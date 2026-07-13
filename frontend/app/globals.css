@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-background: #f7f9fb;
+  --color-surface: #ffffff;
+  --color-on-surface: #191c1e;
+  --color-on-surface-variant: #434655;
+}
+
+body {
+  @apply bg-background font-sans text-foreground antialiased;
+}

@@ -1,0 +1,32 @@
+import { InputHTMLAttributes, forwardRef } from 'react';
+
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  error?: string;
+}
+
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ label, error, className = '', id, ...props }, ref) => {
+    const inputId = id ?? label?.toLowerCase().replace(/\s+/g, '-');
+    return (
+      <div className="flex flex-col gap-1">
+        {label && (
+          <label htmlFor={inputId} className="text-body-md font-semibold text-foreground">
+            {label}
+          </label>
+        )}
+        <input
+          ref={ref}
+          id={inputId}
+          className={`rounded border bg-surface-container-lowest px-3.5 py-2.5 text-body-md text-foreground outline-none transition-colors placeholder:text-on-surface-variant focus:border-2 focus:border-primary ${
+            error ? 'border-error' : 'border-outline-variant'
+          } ${className}`}
+          {...props}
+        />
+        {error && <p className="text-body-md text-error">{error}</p>}
+      </div>
+    );
+  },
+);
+
+Input.displayName = 'Input';
