@@ -19,5 +19,5 @@ Secure the API; enable session-based identity and role-based access for upcoming
 **M8 — Backend Authentication** ✅
 
 ## Next
-- M9: Frontend login/register UI
+- ~~M9: Frontend login/register UI~~ → M9b done
 - M10: Protect ticket routes; `createdBy` from session

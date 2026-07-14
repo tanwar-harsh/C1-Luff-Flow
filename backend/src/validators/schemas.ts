@@ -89,6 +89,52 @@ export const loginSchema = z.object({
     .min(1, 'Password is required'),
 });
 
+export const paginationQuerySchema = z.object({
+  page: z.coerce.number().int().min(1).default(1),
+  limit: z.coerce.number().int().min(1).max(100).default(10),
+});
+
+export const adminCreateUserSchema = z.object({
+  name: z
+    .string({ required_error: 'Name is required' })
+    .min(2, 'Name must be at least 2 characters')
+    .max(100, 'Name must be at most 100 characters'),
+  email: z
+    .string({ required_error: 'Email is required' })
+    .email('Invalid email address'),
+  password: z
+    .string({ required_error: 'Password is required' })
+    .min(8, 'Password must be at least 8 characters')
+    .max(128, 'Password must be at most 128 characters'),
+  role: roleSchema,
+});
+
+export const adminUpdateUserSchema = z
+  .object({
+    name: z.string().min(2).max(100).optional(),
+    email: z.string().email().optional(),
+    password: z.string().min(8).max(128).optional(),
+    role: roleSchema.optional(),
+  })
+  .refine(
+    (data) =>
+      data.name !== undefined ||
+      data.email !== undefined ||
+      data.password !== undefined ||
+      data.role !== undefined,
+    { message: 'At least one field must be provided', path: ['body'] },
+  );
+
+export const updateMeSchema = z
+  .object({
+    name: z.string().min(2).max(100).optional(),
+    email: z.string().email().optional(),
+  })
+  .refine((data) => data.name !== undefined || data.email !== undefined, {
+    message: 'At least one field must be provided',
+    path: ['body'],
+  });
+
 export type CreateTicketBody = z.infer<typeof createTicketSchema>;
 export type UpdateTicketBody = z.infer<typeof updateTicketSchema>;
 export type UpdateStatusBody = z.infer<typeof updateStatusSchema>;
@@ -97,3 +143,7 @@ export type SearchTicketsQuery = z.infer<typeof searchTicketsSchema>;
 export type IdParam = z.infer<typeof idParamSchema>;
 export type RegisterBody = z.infer<typeof registerSchema>;
 export type LoginBody = z.infer<typeof loginSchema>;
+export type PaginationQuery = z.infer<typeof paginationQuerySchema>;
+export type AdminCreateUserBody = z.infer<typeof adminCreateUserSchema>;
+export type AdminUpdateUserBody = z.infer<typeof adminUpdateUserSchema>;
+export type UpdateMeBody = z.infer<typeof updateMeSchema>;

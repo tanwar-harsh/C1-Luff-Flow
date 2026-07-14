@@ -134,7 +134,7 @@ All seed users share password: **`Password123!`**
 
 ## Out of Scope (M8)
 
-- Frontend login/register UI (M9)
+- ~~Frontend login/register UI~~ → delivered in M9/M9b
 - Protecting existing ticket routes (M10)
 - Password reset / email verification
 - OAuth / SSO

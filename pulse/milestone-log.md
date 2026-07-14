@@ -79,3 +79,25 @@ Chronological record of completed work.
 - Migration `20260714061742_add_auth`
 - 44/44 tests passing
 - **Spec:** [`planning/auth-design.md`](../planning/auth-design.md)
+
+---
+
+## M9 — User CRUD & Role Management (2026-07-14) ✅
+
+- Paginated `GET /api/users`, CRUD for admins
+- `PATCH /api/users/me` for self-service profile
+- `GET /api/users/assignees` for ticket dropdowns
+- Frontend: `/login`, `/admin/users`, AuthProvider, RoleBadge
+- 54/54 tests passing
+- **Spec:** [`planning/user-management.md`](../planning/user-management.md)
+
+---
+
+## M9b — Auth UI & Public Landing (2026-07-14) ✅
+
+- Stitch login (`9df36f0f…`) and signup (`1a4df079…`) pages
+- Public landing page (`92cffc92…`) at `/` for guests
+- `AuthLayout`, `PasswordInput`, `SignupForm`, `LandingPage`
+- Conditional header: nav tabs only when authenticated
+- Signup → `POST /api/auth/register`; logout → `/`
+- **Spec:** [`planning/auth-ui.md`](../planning/auth-ui.md)

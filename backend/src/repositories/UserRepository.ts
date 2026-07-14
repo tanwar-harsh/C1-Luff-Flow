@@ -3,6 +3,9 @@ import { User } from '../types/domain';
 import {
   CreateUserData,
   IUserRepository,
+  PaginationParams,
+  PaginatedUsers,
+  UpdateUserData,
   UserWithPassword,
 } from './interfaces/IUserRepository';
 
@@ -23,6 +26,31 @@ export class UserRepository implements IUserRepository {
       select: userSelect,
       orderBy: { name: 'asc' },
     });
+  }
+
+  async findManyPaginated(params: PaginationParams): Promise<PaginatedUsers> {
+    const { page, limit } = params;
+    const skip = (page - 1) * limit;
+
+    const [items, total] = await Promise.all([
+      this.prisma.user.findMany({
+        select: userSelect,
+        orderBy: { createdAt: 'desc' },
+        skip,
+        take: limit,
+      }),
+      this.prisma.user.count(),
+    ]);
+
+    return {
+      items,
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages: Math.ceil(total / limit) || 1,
+      },
+    };
   }
 
   async findById(id: string): Promise<User | null> {
@@ -56,5 +84,26 @@ export class UserRepository implements IUserRepository {
       },
       select: userSelect,
     });
+  }
+
+  async update(id: string, data: UpdateUserData): Promise<User> {
+    return this.prisma.user.update({
+      where: { id },
+      data,
+      select: userSelect,
+    });
+  }
+
+  async delete(id: string): Promise<void> {
+    await this.prisma.user.delete({ where: { id } });
+  }
+
+  async countRelatedRecords(id: string): Promise<number> {
+    const [createdTickets, assignedTickets, comments] = await Promise.all([
+      this.prisma.ticket.count({ where: { createdById: id } }),
+      this.prisma.ticket.count({ where: { assignedToId: id } }),
+      this.prisma.comment.count({ where: { createdById: id } }),
+    ]);
+    return createdTickets + assignedTickets + comments;
   }
 }
