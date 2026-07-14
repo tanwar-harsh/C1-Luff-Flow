@@ -46,7 +46,7 @@ Master index for all project milestones. Status is mirrored in [`pulse/current.m
 | **M8** | Backend Authentication | ✅ Done | `passwordHash`, `RefreshToken`, `/auth/*`, middleware — see [`auth-design.md`](./auth-design.md) |
 | **M9** | User CRUD & Role Management | ✅ Done | Admin user API, `/admin/users` page, login — see [`user-management.md`](./user-management.md) |
 | **M9b** | Auth UI & Public Landing | ✅ Done | Stitch login/signup, `/signup`, landing page, conditional nav — see [`auth-ui.md`](./auth-ui.md) |
-| **M10** | Route Protection & RBAC | 📋 Planned | Protect ticket routes; `createdBy` from session; role gates |
+| **M10** | Route Protection & RBAC | ✅ Done | Protected ticket routes, role UI gates, session `createdBy` — see [`rbac-design.md`](./rbac-design.md) |
 
 ---
 
@@ -86,4 +86,5 @@ Master index for all project milestones. Status is mirrored in [`pulse/current.m
 | 2026-07-14 | M8 | Backend auth: bcrypt, JWT cookies, refresh tokens, middleware |
 | 2026-07-14 | M9 | User CRUD & role management (admin API + frontend) |
 | 2026-07-14 | M9b | Stitch auth UI (login/signup), public landing page, conditional nav |
-| 2026-07-14 | Deploy | Redeployed backend + frontend to Vercel (auth UI, landing, JWT_SECRET) |
+| 2026-07-14 | M10 | RBAC: protected routes, role-based UI, session createdBy |
+| 2026-07-14 | Deploy | RBAC + centered navbar; demo seed fix; test DB isolation |

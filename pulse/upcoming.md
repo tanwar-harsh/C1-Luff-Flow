@@ -4,25 +4,6 @@ Planned work in priority order. Full roadmap: [`planning/milestones.md`](../plan
 
 ---
 
-## M10 — Route Protection & RBAC 📋
-
-**Goal:** Secure ticket API; derive identity from session.
-
-| Task | Details |
-|------|---------|
-| Protect routes | `authenticate` on ticket/user endpoints |
-| Remove `createdBy` from body | Use `req.user.id` in services |
-| Role gates | e.g. only AGENT/ADMIN can change status or assign |
-| Update frontend | Remove manual user ID fields from forms |
-| Update tests | Authenticated supertest helpers |
-
-**Acceptance criteria:**
-- Unauthenticated API calls return 401
-- Wrong role returns 403
-- Tickets created with session user as `createdBy`
-
----
-
 ## M11 — Pagination 📋
 
 - `?page=` and `?limit=` on `GET /tickets` and search
@@ -38,7 +19,7 @@ Planned work in priority order. Full roadmap: [`planning/milestones.md`](../plan
 
 ## M13 — Separate Test Database 📋
 
-- Neon branch for integration tests (stop wiping dev data)
+- Neon branch for integration tests (`.env.test` no longer falls back to `.env`)
 
 ---
 

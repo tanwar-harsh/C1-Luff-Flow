@@ -8,6 +8,12 @@ import {
   useState,
 } from 'react';
 import { UserSummary } from '@/types/domain';
+import {
+  canCreateTicket,
+  canManageUsers,
+  canMutateTicket,
+  canViewTickets,
+} from '@/utils/permissions';
 import { fetchCurrentUser, login as apiLogin, logout as apiLogout, register as apiRegister, RegisterInput } from '@/services/authService';
 import { LoginInput } from '@/services/authService';
 
@@ -15,6 +21,10 @@ interface AuthContextValue {
   user: UserSummary | null;
   isLoading: boolean;
   isAdmin: boolean;
+  canViewTickets: boolean;
+  canCreateTicket: boolean;
+  canMutateTicket: boolean;
+  canManageUsers: boolean;
   login: (input: LoginInput) => Promise<void>;
   register: (input: RegisterInput) => Promise<void>;
   logout: () => Promise<void>;
@@ -51,12 +61,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setUser(null);
   }, []);
 
+  const role = user?.role;
+
   return (
     <AuthContext.Provider
       value={{
         user,
         isLoading,
-        isAdmin: user?.role === 'ADMIN',
+        isAdmin: role === 'ADMIN',
+        canViewTickets: canViewTickets(role),
+        canCreateTicket: canCreateTicket(role),
+        canMutateTicket: canMutateTicket(role),
+        canManageUsers: canManageUsers(role),
         login,
         register,
         logout,

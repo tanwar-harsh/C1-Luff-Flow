@@ -14,5 +14,7 @@
 | 11 | [11-user-management.md](./11-user-management.md) | User CRUD, role management, admin UI | M9 — User Management |
 | 12 | [12-auth-ui.md](./12-auth-ui.md) | Stitch login/signup pages, signup flow | M9b — Auth UI |
 | 13 | [13-landing-page.md](./13-landing-page.md) | Public landing page, conditional nav tabs | M9b — Landing |
+| 14 | [14-rbac.md](./14-rbac.md) | Route protection, role-based UI gates | M10 — RBAC |
+| 15 | [15-navbar-and-prod-fix.md](./15-navbar-and-prod-fix.md) | Centered navbar, demo seed, prod login fix | Deploy |
 
 **Roadmap:** [`planning/milestones.md`](../planning/milestones.md) · **Status:** [`pulse/current.md`](../pulse/current.md)

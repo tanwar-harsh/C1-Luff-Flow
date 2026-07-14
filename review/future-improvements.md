@@ -9,6 +9,7 @@ Prioritized enhancements beyond core scope. See [`pulse/upcoming.md`](../pulse/u
 | Authentication (backend) | M8 | JWT cookies, refresh tokens, middleware |
 | User CRUD & admin UI | M9 | Admin API, `/admin/users` |
 | Auth UI & landing page | M9b | Stitch login/signup, public landing |
+| Route protection & RBAC | M10 | Protected routes, role UI gates, session createdBy |
 | Dark mode | M7 | Theme toggle, CSS variables |
 | Vercel deployment | M6 | Backend + frontend live |
 
@@ -16,10 +17,9 @@ Prioritized enhancements beyond core scope. See [`pulse/upcoming.md`](../pulse/u
 
 | # | Improvement | Milestone | Why |
 |---|-------------|-----------|-----|
-| 1 | **Route protection & RBAC** | M10 | `createdBy` from session; protect ticket routes |
-| 2 | **Pagination** | M11 | Ticket list will not scale without `?page=` |
-| 3 | **Frontend E2E tests** | M12 | Playwright for auth + ticket flows |
-| 4 | **Separate test database** | M13 | Neon branch — stop wiping dev data |
+| 1 | **Pagination** | M11 | Ticket list will not scale without `?page=` |
+| 2 | **Frontend E2E tests** | M12 | Playwright for auth + ticket flows |
+| 3 | **Separate test database** | M13 | Neon branch for integration tests |
 
 ## Medium Priority
 
@@ -46,7 +46,6 @@ Prioritized enhancements beyond core scope. See [`pulse/upcoming.md`](../pulse/u
 ## Technical Debt
 
 - Integration test suites each call `resetDatabase()` independently — could share setup
-- Ticket routes still accept `createdBy` in body (fix in M10)
 - `express.d.ts` uses `unknown` for validated request — could use generics
 - No request logging correlation IDs
 - Frontend `TicketDetailView` uses dynamic import for refresh — could use callback prop

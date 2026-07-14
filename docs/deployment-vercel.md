@@ -67,7 +67,18 @@ npx vercel
 npx vercel --prod
 ```
 
-### Seed production data (one-time)
+### Seed demo login accounts (production-safe)
+
+Upserts `admin@example.com`, `agent@example.com`, `user@example.com` without wiping data:
+
+```bash
+cd backend
+DATABASE_URL="your-neon-url" npm run db:seed:demo
+```
+
+Password for all demo accounts: `Password123!`
+
+### Full reset seed (dev only — wipes all data)
 
 ```bash
 cd backend
@@ -143,7 +154,7 @@ http://localhost:3000,https://support-ticket.vercel.app
 | Frontend | https://frontend-alpha-murex-89.vercel.app |
 | Backend API | https://backend-sigma-eight-96.vercel.app/api |
 
-**Last redeploy:** 2026-07-14 (auth UI, signup, landing page)
+**Last redeploy:** 2026-07-14 (RBAC, centered navbar, demo seed)
 
 ### Redeploy via CLI
 

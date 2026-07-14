@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useAuth } from '@/context/AuthContext';
 import { TicketWithRelations, UserSummary } from '@/types/domain';
 import { updateTicket } from '@/services/ticketService';
 import { parseApiError } from '@/utils/errors';
@@ -20,6 +21,7 @@ interface TicketDetailViewProps {
 }
 
 export function TicketDetailView({ initialTicket, users }: TicketDetailViewProps) {
+  const { canMutateTicket } = useAuth();
   const [ticket, setTicket] = useState(initialTicket);
   const [isEditing, setIsEditing] = useState(false);
   const [assignedTo, setAssignedTo] = useState(ticket.assignedToId ?? '');
@@ -77,60 +79,70 @@ export function TicketDetailView({ initialTicket, users }: TicketDetailViewProps
         <div>
           <h3 className="mb-4 text-headline-md text-foreground">Comments</h3>
           <CommentList comments={ticket.comments} />
-          <div className="mt-6">
-            <CommentForm
-              ticketId={ticket.id}
-              users={users}
-              onCommentAdded={refreshTicket}
-            />
-          </div>
+          {canMutateTicket && (
+            <div className="mt-6">
+              <CommentForm ticketId={ticket.id} onCommentAdded={refreshTicket} />
+            </div>
+          )}
         </div>
       </div>
 
       <div className="flex flex-col gap-6">
         <div className="rounded-lg bg-surface-container-lowest p-6">
           <h3 className="mb-4 text-headline-md text-foreground">Status</h3>
-          <StatusActions
-            ticketId={ticket.id}
-            currentStatus={ticket.status}
-            onStatusChanged={refreshTicket}
-          />
+          {canMutateTicket ? (
+            <StatusActions
+              ticketId={ticket.id}
+              currentStatus={ticket.status}
+              onStatusChanged={refreshTicket}
+            />
+          ) : (
+            <StatusBadge status={ticket.status} />
+          )}
         </div>
 
         <div className="rounded-lg bg-surface-container-lowest p-6">
           <h3 className="mb-4 text-headline-md text-foreground">Assignment</h3>
-          {error && <Alert message={error} />}
-          {isEditing ? (
-            <div className="flex flex-col gap-3">
-              <Select
-                label="Assignee"
-                options={userOptions}
-                placeholder="Unassigned"
-                value={assignedTo}
-                onChange={(e) => setAssignedTo(e.target.value)}
-              />
-              <div className="flex gap-2">
-                <Button onClick={handleAssign} isLoading={saving}>
-                  Save
-                </Button>
-                <Button variant="ghost" onClick={() => setIsEditing(false)}>
-                  Cancel
-                </Button>
-              </div>
-            </div>
+          {canMutateTicket ? (
+            <>
+              {error && <Alert message={error} />}
+              {isEditing ? (
+                <div className="flex flex-col gap-3">
+                  <Select
+                    label="Assignee"
+                    options={userOptions}
+                    placeholder="Unassigned"
+                    value={assignedTo}
+                    onChange={(e) => setAssignedTo(e.target.value)}
+                  />
+                  <div className="flex gap-2">
+                    <Button onClick={handleAssign} isLoading={saving}>
+                      Save
+                    </Button>
+                    <Button variant="ghost" onClick={() => setIsEditing(false)}>
+                      Cancel
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <p className="text-body-md text-foreground">
+                    {ticket.assignedTo?.name ?? 'Unassigned'}
+                  </p>
+                  <Button
+                    variant="ghost"
+                    className="mt-2"
+                    onClick={() => setIsEditing(true)}
+                  >
+                    Change Assignee
+                  </Button>
+                </div>
+              )}
+            </>
           ) : (
-            <div>
-              <p className="text-body-md text-foreground">
-                {ticket.assignedTo?.name ?? 'Unassigned'}
-              </p>
-              <Button
-                variant="ghost"
-                className="mt-2"
-                onClick={() => setIsEditing(true)}
-              >
-                Change Assignee
-              </Button>
-            </div>
+            <p className="text-body-md text-foreground">
+              {ticket.assignedTo?.name ?? 'Unassigned'}
+            </p>
           )}
         </div>
       </div>

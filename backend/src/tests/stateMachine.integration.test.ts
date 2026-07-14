@@ -1,5 +1,4 @@
 import { beforeAll, afterAll, describe, it, expect } from 'vitest';
-import request from 'supertest';
 import { TicketStatus } from '@prisma/client';
 import { createApp } from '../app';
 import { prisma } from '../config/prisma';
@@ -10,16 +9,19 @@ import {
   TestUsers,
 } from './helpers/testDb';
 import { isDatabaseAvailable } from './helpers/dbCheck';
+import { loginAsAgent, withCookies } from './helpers/auth';
 
 const app = createApp();
 const dbAvailable = await isDatabaseAvailable();
 
 describe.skipIf(!dbAvailable)('Ticket Status State Machine (Integration)', () => {
   let users: TestUsers;
+  let agentCookies: string[];
 
   beforeAll(async () => {
     await resetDatabase();
     users = await seedTestUsers();
+    agentCookies = await loginAsAgent(app);
   });
 
   afterAll(async () => {
@@ -28,13 +30,12 @@ describe.skipIf(!dbAvailable)('Ticket Status State Machine (Integration)', () =>
   });
 
   async function createOpenTicket() {
-    const response = await request(app)
+    const response = await withCookies(app, agentCookies)
       .post('/api/tickets')
       .send({
         title: 'State machine test ticket',
         description: 'Ticket used for state machine integration tests',
         priority: 'MEDIUM',
-        createdBy: users.user.id,
         assignedTo: users.agent.id,
       });
     expect(response.status).toBe(201);
@@ -42,7 +43,7 @@ describe.skipIf(!dbAvailable)('Ticket Status State Machine (Integration)', () =>
   }
 
   async function patchStatus(ticketId: string, status: string) {
-    return request(app)
+    return withCookies(app, agentCookies)
       .patch(`/api/tickets/${ticketId}/status`)
       .send({ status });
   }

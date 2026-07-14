@@ -13,7 +13,10 @@ import {
 export function createTicketController(services: Services) {
   const createTicket = asyncHandler(async (req: Request, res: Response) => {
     const body = req.validated!.body as CreateTicketBody;
-    const ticket = await services.ticketService.createTicket(body);
+    const ticket = await services.ticketService.createTicket({
+      ...body,
+      createdBy: req.user!.id,
+    });
     res.status(201).json(successResponse(ticket));
   });
 

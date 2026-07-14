@@ -104,9 +104,24 @@ Chronological record of completed work.
 
 ---
 
-## Vercel Redeploy (2026-07-14)
+## M10 — Route Protection & RBAC (2026-07-14) ✅
 
-- Backend + frontend redeployed with M8/M9/M9b changes
-- Backend env: `DATABASE_URL`, `CORS_ORIGIN`, `JWT_SECRET`
-- Frontend env: `NEXT_PUBLIC_API_URL` → `https://backend-sigma-eight-96.vercel.app/api`
-- **URLs:** frontend-alpha-murex-89.vercel.app, backend-sigma-eight-96.vercel.app
+- Protected all ticket routes with `authenticate` + role gates on mutations
+- `createdBy` from session; removed from API bodies and frontend forms
+- `permissions.ts`, `RequireAuth`, conditional UI (hide not disable)
+- Centered CRUD nav tabs in header
+- `db:seed:demo` for production demo accounts; test setup isolated from `.env`
+- 58/58 tests passing
+- **Spec:** [`planning/rbac-design.md`](../planning/rbac-design.md)
+
+---
+
+## Vercel Deployments
+
+| Date | Notes |
+|------|-------|
+| 2026-07-13 | Initial M6 deploy |
+| 2026-07-14 AM | Auth UI, landing, JWT_SECRET |
+| 2026-07-14 PM | RBAC, centered navbar, demo seed fix |
+
+**URLs:** frontend-alpha-murex-89.vercel.app · backend-sigma-eight-96.vercel.app
