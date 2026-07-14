@@ -1,6 +1,10 @@
 import { PrismaClient } from '@prisma/client';
 import { User } from '../types/domain';
-import { IUserRepository } from './interfaces/IUserRepository';
+import {
+  CreateUserData,
+  IUserRepository,
+  UserWithPassword,
+} from './interfaces/IUserRepository';
 
 const userSelect = {
   id: true,
@@ -31,6 +35,25 @@ export class UserRepository implements IUserRepository {
   async findByEmail(email: string): Promise<User | null> {
     return this.prisma.user.findUnique({
       where: { email },
+      select: userSelect,
+    });
+  }
+
+  async findByEmailWithPassword(email: string): Promise<UserWithPassword | null> {
+    return this.prisma.user.findUnique({
+      where: { email },
+      select: { ...userSelect, passwordHash: true },
+    });
+  }
+
+  async create(data: CreateUserData): Promise<User> {
+    return this.prisma.user.create({
+      data: {
+        name: data.name,
+        email: data.email,
+        passwordHash: data.passwordHash,
+        role: data.role ?? 'USER',
+      },
       select: userSelect,
     });
   }

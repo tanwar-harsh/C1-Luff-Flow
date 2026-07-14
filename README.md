@@ -73,7 +73,9 @@ C1-Assignment/
 ├── tool-workflow.md           # AI-assisted development workflow
 ├── docs/
 │   └── api.md                 # API reference
-├── planning/                  # M1 design documents
+├── planning/                  # M1 design documents + milestone roadmap
+│   ├── milestones.md          # Master milestone index (M1–M17)
+│   ├── auth-design.md         # M8 authentication spec
 │   ├── requirements.md
 │   ├── assumptions.md
 │   ├── architecture.md
@@ -81,6 +83,10 @@ C1-Assignment/
 │   ├── api-design.md
 │   ├── state-machine.md
 │   └── user-stories.md
+├── pulse/                     # Live project status
+│   ├── current.md             # Health snapshot
+│   ├── milestone-log.md       # Completed milestones
+│   └── upcoming.md            # Planned work (M9+)
 ├── prompts/                   # AI prompt history
 ├── testing/
 │   ├── test-plan.md
@@ -282,9 +288,12 @@ See [`testing/test-plan.md`](./testing/test-plan.md) and [`testing/integration-r
 |----------|---------|
 | [`DESIGN.md`](./DESIGN.md) | UI design tokens |
 | [`docs/api.md`](./docs/api.md) | API reference |
+| [`planning/milestones.md`](./planning/milestones.md) | Milestone roadmap (M1–M17) |
+| [`planning/auth-design.md`](./planning/auth-design.md) | M8 authentication spec |
 | [`docs/deployment-vercel.md`](./docs/deployment-vercel.md) | **Deploy to Vercel** (frontend + backend) |
 | [`tool-workflow.md`](./tool-workflow.md) | AI development workflow |
-| [`planning/`](./planning/) | Requirements, architecture, design |
+| [`planning/`](./planning/) | Requirements, architecture, milestones |
+| [`pulse/`](./pulse/) | **Live status** — current health, milestone log, upcoming |
 | [`testing/`](./testing/) | Test plan and results |
 | [`review/`](./review/) | Code reviews |
 | [`reflection/`](./reflection/) | Project reflection |

@@ -1,10 +1,10 @@
 # Assumptions
 
 ## Business & Domain
-| # | Assumption | Rationale |
-|---|------------|-----------|
-| A-1 | No authentication in v1 | Spec lists users and roles but no auth endpoints; we treat `createdBy` as a user ID passed in the request body |
-| A-2 | `role` is informational only in v1 | No RBAC enforcement unless explicitly added later |
+| # | Assumption | Rationale | Status |
+|---|------------|-----------|--------|
+| A-1 | ~~No authentication in v1~~ Auth added in M8 (backend); frontend session in M9 | Originally deferred; layers support auth middleware | **Updated M8** |
+| A-2 | ~~`role` is informational only~~ RBAC via `authorize()` middleware (M8); route protection in M10 | Roles enforced at API boundary | **Updated M8** |
 | A-3 | New tickets default to `OPEN` status | Standard support workflow; not explicitly stated but implied by state machine |
 | A-4 | `assignedTo` is optional at creation | Tickets can be created unassigned and assigned later |
 | A-5 | Keyword search is case-insensitive | Better UX; standard for search features |
@@ -36,6 +36,6 @@
 | A-19 | Seed script provides sample users and tickets | Enables manual QA and test fixtures |
 
 ## Risks if Assumptions Are Wrong
-- **A-1 (no auth):** If auth is required, we add middleware + session/JWT in a later milestone without restructuring layers.
+- **A-1 (auth):** Backend auth complete (M8). Ticket routes still accept `createdBy` in body until M10.
 - **A-9 (enum casing):** Frontend display labels can differ from API values via a mapping layer.
 - **A-10 (priority values):** Easy to adjust in Prisma enum + Zod schema.

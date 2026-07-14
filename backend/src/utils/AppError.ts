@@ -44,3 +44,17 @@ export class InvalidStatusTransitionError extends AppError {
     this.name = 'InvalidStatusTransitionError';
   }
 }
+
+export class UnauthorizedError extends AppError {
+  constructor(message = 'Authentication required') {
+    super(401, 'UNAUTHORIZED', message);
+    this.name = 'UnauthorizedError';
+  }
+}
+
+export class ForbiddenError extends AppError {
+  constructor(message = 'Insufficient permissions') {
+    super(403, 'FORBIDDEN', message);
+    this.name = 'ForbiddenError';
+  }
+}

@@ -29,18 +29,34 @@ enum TicketStatus {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  name      String
-  email     String   @unique
-  role      Role
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         Role     @default(USER)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
-  createdTickets  Ticket[]  @relation("TicketCreatedBy")
-  assignedTickets Ticket[]  @relation("TicketAssignedTo")
+  createdTickets  Ticket[]       @relation("TicketCreatedBy")
+  assignedTickets Ticket[]       @relation("TicketAssignedTo")
   comments        Comment[]
+  refreshTokens   RefreshToken[]
 
   @@map("users")
+}
+
+model RefreshToken {
+  id        String    @id @default(cuid())
+  tokenHash String    @unique
+  userId    String
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("refresh_tokens")
 }
 
 model Ticket {

@@ -59,6 +59,23 @@ Support Ticket Management System — a full-stack app for managing support ticke
 - **AI role:** Final documentation and test execution
 - **Human role:** Connected NeonDB, verified end-to-end in browser
 
+### 8. Vercel Deployment (Milestone 6)
+- Backend serverless + frontend on two Vercel projects
+- `docs/deployment-vercel.md`, CORS production config
+
+### 9. Dark / Light Theme (Milestone 7)
+- CSS variables, ThemeProvider, header toggle
+
+### 10. Backend Authentication (Milestone 8)
+- bcrypt, JWT cookies, RefreshToken model, auth middleware
+- `planning/auth-design.md`, 44 tests total
+
+### Status Tracking (`pulse/` folder)
+- `pulse/current.md` — live health snapshot (update each milestone)
+- `pulse/milestone-log.md` — completed work chronicle
+- `pulse/upcoming.md` — M9+ planned milestones
+- `planning/milestones.md` — master roadmap index
+
 ---
 
 ## Code Generation Approach
@@ -105,7 +122,8 @@ Support Ticket Management System — a full-stack app for managing support ticke
 ## Security Considerations
 
 - No secrets in repository (`.env` gitignored)
-- No authentication in v1 (documented assumption; layers ready for middleware)
+- Backend auth (M8): bcrypt, httpOnly JWT cookies, hashed refresh tokens
+- Ticket routes not yet protected (M10 planned)
 - Zod validation at API boundary
 - Centralized error handler (no stack traces in production)
 - Neon connection uses `sslmode=require`

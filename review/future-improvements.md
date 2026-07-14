@@ -1,42 +1,53 @@
 # Future Improvements
 
-Prioritized enhancements beyond v1 scope.
+Prioritized enhancements beyond core scope. See [`pulse/upcoming.md`](../pulse/upcoming.md) for milestone-tracked work.
 
-## High Priority
+## Completed Since v1
 
-| # | Improvement | Why |
-|---|-------------|-----|
-| 1 | **Authentication & authorization** | `createdBy` should come from session, not request body; enforce role-based access |
-| 2 | **Separate test database** | Neon branch for integration tests to avoid wiping dev data |
-| 3 | **Pagination** | Ticket list will not scale without `?page=` or cursor-based pagination |
-| 4 | **Frontend E2E tests** | Playwright tests for create ticket, status change, search flows |
+| Item | Milestone | Notes |
+|------|-----------|-------|
+| Authentication (backend) | M8 | JWT cookies, refresh tokens, middleware |
+| Dark mode | M7 | Theme toggle, CSS variables |
+| Vercel deployment | M6 | Backend + frontend live |
+
+## High Priority (scheduled as milestones)
+
+| # | Improvement | Milestone | Why |
+|---|-------------|-----------|-----|
+| 1 | **Frontend auth UI** | M9 | Login/register pages, session context |
+| 2 | **Route protection & RBAC** | M10 | `createdBy` from session; protect ticket routes |
+| 3 | **Production auth config** | M11 | `JWT_SECRET` on Vercel |
+| 4 | **Separate test database** | M14 | Neon branch — stop wiping dev data |
+| 5 | **Pagination** | M12 | Ticket list will not scale without `?page=` |
+| 6 | **Frontend E2E tests** | M13 | Playwright for auth + ticket flows |
 
 ## Medium Priority
 
-| # | Improvement | Why |
-|---|-------------|-----|
-| 5 | **React Query / SWR** | Replace `useEffect` fetching with cache, refetch, optimistic updates |
-| 6 | **Ticket update form on detail page** | Currently only assignee is editable; title/description update UI missing |
-| 7 | **Audit log** | Track status changes with timestamp and actor |
-| 8 | **Email notifications** | Notify assignee on new ticket or status change |
-| 9 | **Rate limiting** | Protect API from abuse |
-| 10 | **OpenAPI / Swagger** | Auto-generated API docs from Zod schemas |
+| # | Improvement | Milestone | Why |
+|---|-------------|-----------|-----|
+| 7 | **React Query / SWR** | Backlog | Replace `useEffect` fetching with cache |
+| 8 | **Ticket update form on detail page** | Backlog | Title/description edit UI missing |
+| 9 | **Audit log** | M15 | Track status changes with actor |
+| 10 | **Email notifications** | Backlog | Notify assignee on changes |
+| 11 | **Rate limiting** | Backlog | Protect API from abuse |
+| 12 | **OpenAPI / Swagger** | M16 | Auto-generated API docs |
 
 ## Low Priority
 
 | # | Improvement | Why |
 |---|-------------|-----|
-| 11 | **Dark mode** | DESIGN.md is light-only; would need token extension |
-| 12 | **Kanban board view** | Stitch design references Board/List/Timeline views |
-| 13 | **File attachments** | On tickets and comments |
-| 14 | **Soft delete** | Archive tickets instead of terminal states only |
-| 15 | **Prisma config migration** | Move from `package.json#prisma` to `prisma.config.ts` |
-| 16 | **Docker Compose** | One-command local dev with PostgreSQL |
-| 17 | **CI/CD pipeline** | GitHub Actions: lint, test, build on PR |
+| 13 | **Kanban board view** | Stitch design references Board/List/Timeline |
+| 14 | **File attachments** | On tickets and comments |
+| 15 | **Soft delete** | Archive tickets |
+| 16 | **Prisma config migration** | `package.json#prisma` → `prisma.config.ts` |
+| 17 | **Docker Compose** | One-command local dev |
+| 18 | **CI/CD pipeline** | M17 — GitHub Actions on PR |
 
 ## Technical Debt
 
 - Integration test suites each call `resetDatabase()` independently — could share setup
+- Ticket routes still accept `createdBy` in body (fix in M10)
 - `express.d.ts` uses `unknown` for validated request — could use generics
 - No request logging correlation IDs
 - Frontend `TicketDetailView` uses dynamic import for refresh — could use callback prop
+- Production Vercel needs `JWT_SECRET` and redeploy after M8

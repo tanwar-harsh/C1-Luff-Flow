@@ -1,19 +1,26 @@
 import { PrismaClient, Priority, Role, TicketStatus } from '@prisma/client';
+import { hashPassword } from '../src/utils/password';
 
 const prisma = new PrismaClient();
+
+const DEFAULT_PASSWORD = 'Password123!';
 
 async function main() {
   console.log('Seeding database...');
 
+  await prisma.refreshToken.deleteMany();
   await prisma.comment.deleteMany();
   await prisma.ticket.deleteMany();
   await prisma.user.deleteMany();
+
+  const passwordHash = await hashPassword(DEFAULT_PASSWORD);
 
   const admin = await prisma.user.create({
     data: {
       name: 'Alice Admin',
       email: 'admin@example.com',
       role: Role.ADMIN,
+      passwordHash,
     },
   });
 
@@ -22,6 +29,7 @@ async function main() {
       name: 'Jane Agent',
       email: 'agent@example.com',
       role: Role.AGENT,
+      passwordHash,
     },
   });
 
@@ -30,6 +38,7 @@ async function main() {
       name: 'Bob User',
       email: 'user@example.com',
       role: Role.USER,
+      passwordHash,
     },
   });
 
@@ -106,7 +115,7 @@ async function main() {
   });
 
   console.log('Seed completed:');
-  console.log(`  Users: 3 (admin, agent, user)`);
+  console.log(`  Users: 3 (admin, agent, user) — password: ${DEFAULT_PASSWORD}`);
   console.log(`  Tickets: ${tickets.length}`);
   console.log(`  Comments: 3`);
 }

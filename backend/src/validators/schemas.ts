@@ -64,9 +64,36 @@ export const searchTicketsSchema = z.object({
   status: ticketStatusSchema.optional(),
 });
 
+export const roleSchema = z.enum(['ADMIN', 'AGENT', 'USER']);
+
+export const registerSchema = z.object({
+  name: z
+    .string({ required_error: 'Name is required' })
+    .min(2, 'Name must be at least 2 characters')
+    .max(100, 'Name must be at most 100 characters'),
+  email: z
+    .string({ required_error: 'Email is required' })
+    .email('Invalid email address'),
+  password: z
+    .string({ required_error: 'Password is required' })
+    .min(8, 'Password must be at least 8 characters')
+    .max(128, 'Password must be at most 128 characters'),
+});
+
+export const loginSchema = z.object({
+  email: z
+    .string({ required_error: 'Email is required' })
+    .email('Invalid email address'),
+  password: z
+    .string({ required_error: 'Password is required' })
+    .min(1, 'Password is required'),
+});
+
 export type CreateTicketBody = z.infer<typeof createTicketSchema>;
 export type UpdateTicketBody = z.infer<typeof updateTicketSchema>;
 export type UpdateStatusBody = z.infer<typeof updateStatusSchema>;
 export type CreateCommentBody = z.infer<typeof createCommentSchema>;
 export type SearchTicketsQuery = z.infer<typeof searchTicketsSchema>;
 export type IdParam = z.infer<typeof idParamSchema>;
+export type RegisterBody = z.infer<typeof registerSchema>;
+export type LoginBody = z.infer<typeof loginSchema>;
