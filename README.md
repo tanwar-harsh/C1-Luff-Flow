@@ -2,6 +2,22 @@
 
 A full-stack application for managing support tickets with a strict status state machine, built with Clean Architecture principles.
 
+## Screenshots
+
+Design screens exported from [Stitch](https://stitch.withgoogle.com) (see [`DESIGN.md`](./DESIGN.md)).
+
+### Landing page
+
+![Landing page](./docs/images/stitch-landing-hero.png)
+
+### Login
+
+![Login page](./docs/images/stitch-login.png)
+
+### Ticket list
+
+![Ticket list](./docs/images/stitch-ticket-list.png)
+
 ## Tech Stack
 
 | Layer | Technology |
