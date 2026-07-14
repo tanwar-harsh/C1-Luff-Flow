@@ -47,6 +47,7 @@ npm i -g vercel
 | `DATABASE_URL` | Your Neon pooled connection string (`?sslmode=require`) |
 | `NODE_ENV` | `production` |
 | `CORS_ORIGIN` | `http://localhost:3000` (add frontend URL after Step 2) |
+| `JWT_SECRET` | Strong random string, min 32 characters |
 
 7. Deploy
 
@@ -121,7 +122,10 @@ http://localhost:3000,https://support-ticket.vercel.app
 | Variable | Required | Example |
 |----------|----------|---------|
 | `DATABASE_URL` | Yes | `postgresql://...@ep-xxx.neon.tech/neondb?sslmode=require` |
-| `CORS_ORIGIN` | Yes | `https://your-frontend.vercel.app` |
+| `CORS_ORIGIN` | Yes | `http://localhost:3000,https://your-frontend.vercel.app` |
+| `JWT_SECRET` | Yes | Min 32 characters (random string) |
+| `JWT_ACCESS_EXPIRES_IN` | No | `15m` |
+| `JWT_REFRESH_EXPIRES_DAYS` | No | `7` |
 | `NODE_ENV` | No | `production` (set by Vercel) |
 
 ### Frontend (`frontend/`)
@@ -129,6 +133,30 @@ http://localhost:3000,https://support-ticket.vercel.app
 | Variable | Required | Example |
 |----------|----------|---------|
 | `NEXT_PUBLIC_API_URL` | Yes | `https://your-backend.vercel.app/api` |
+
+---
+
+## Production URLs (current)
+
+| Project | URL |
+|---------|-----|
+| Frontend | https://frontend-alpha-murex-89.vercel.app |
+| Backend API | https://backend-sigma-eight-96.vercel.app/api |
+
+**Last redeploy:** 2026-07-14 (auth UI, signup, landing page)
+
+### Redeploy via CLI
+
+```bash
+cd backend && npx vercel --prod --yes
+cd ../frontend && npx vercel --prod --yes
+```
+
+Verify:
+
+```bash
+curl https://backend-sigma-eight-96.vercel.app/api/health
+```
 
 ---
 

@@ -23,50 +23,38 @@ Planned work in priority order. Full roadmap: [`planning/milestones.md`](../plan
 
 ---
 
-## M11 — Production Auth Config 🔄
-
-**Goal:** Auth works on Vercel production with latest M9b frontend.
-
-| Task | Details |
-|------|---------|
-| Vercel env | `JWT_SECRET` on backend (done); verify `CORS_ORIGIN` |
-| Redeploy | Backend + frontend with login/signup/landing |
-| Verify | Register, login, landing page on production URL |
-
----
-
-## M12 — Pagination 📋
+## M11 — Pagination 📋
 
 - `?page=` and `?limit=` on `GET /tickets` and search
 - Frontend table pagination controls
 
 ---
 
-## M13 — Frontend E2E Tests 📋
+## M12 — Frontend E2E Tests 📋
 
 - Playwright: register → create ticket → change status → search
 
 ---
 
-## M14 — Separate Test Database 📋
+## M13 — Separate Test Database 📋
 
 - Neon branch for integration tests (stop wiping dev data)
 
 ---
 
-## M15 — Audit Log 📋
+## M14 — Audit Log 📋
 
 - `TicketStatusHistory` model: from, to, actor, timestamp
 
 ---
 
-## M16 — OpenAPI / Swagger 📋
+## M15 — OpenAPI / Swagger 📋
 
 - Generate from Zod schemas or manual spec
 
 ---
 
-## M17 — CI/CD Pipeline 📋
+## M16 — CI/CD Pipeline 📋
 
 - GitHub Actions: lint, `npm test`, `next build` on PR
 
