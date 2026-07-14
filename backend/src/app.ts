@@ -1,6 +1,7 @@
 import express, { Express } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
 import { env } from './config/env';
 import { prisma } from './config/prisma';
 import { createRepositories, Repositories } from './repositories';
@@ -20,6 +21,7 @@ export function createApp(repositories?: Repositories): Express {
   );
   app.use(morgan(env.NODE_ENV === 'test' ? 'tiny' : 'dev'));
   app.use(express.json());
+  app.use(cookieParser());
 
   app.use('/api', createRoutes(repos));
 

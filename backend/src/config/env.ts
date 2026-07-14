@@ -11,6 +11,9 @@ const envSchema = z.object({
     .string()
     .default('http://localhost:3000')
     .transform((value) => value.split(',').map((origin) => origin.trim())),
+  JWT_SECRET: z.string().min(32, 'JWT_SECRET must be at least 32 characters'),
+  JWT_ACCESS_EXPIRES_IN: z.string().default('15m'),
+  JWT_REFRESH_EXPIRES_DAYS: z.coerce.number().default(7),
 });
 
 const parsed = envSchema.safeParse(process.env);

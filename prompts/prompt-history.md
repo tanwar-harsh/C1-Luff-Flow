@@ -8,3 +8,8 @@
 | 05 | [05-testing.md](./05-testing.md) | Full test suite execution against Neon PostgreSQL | M5 — Testing |
 | 06 | [06-debugging.md](./06-debugging.md) | NeonDB connection debugging | M5 — Debugging |
 | 07 | [07-review.md](./07-review.md) | Review docs, reflection, final documentation | M5 — Review |
+| 08 | [08-deployment.md](./08-deployment.md) | Vercel deployment (backend serverless + frontend) | M6 — Deployment |
+| 09 | [09-dark-mode.md](./09-dark-mode.md) | Dark/light theme toggle across entire app | M7 — Theme |
+| 10 | [10-auth.md](./10-auth.md) | Backend authentication, refresh tokens, middleware | M8 — Auth |
+
+**Roadmap:** [`planning/milestones.md`](../planning/milestones.md) · **Status:** [`pulse/current.md`](../pulse/current.md)

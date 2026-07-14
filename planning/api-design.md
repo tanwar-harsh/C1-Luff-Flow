@@ -29,6 +29,36 @@
 
 ## Endpoints
 
+### Auth (M8)
+
+See [`auth-design.md`](./auth-design.md) for full specification.
+
+#### `POST /auth/register`
+Create account. Role defaults to `USER`. Sets `access_token` and `refresh_token` httpOnly cookies.
+
+**Body:** `{ "name", "email", "password" }`  
+**Response 201:** `{ user }` in `data` (no tokens in JSON body).
+
+#### `POST /auth/login`
+Authenticate. Sets cookies.
+
+**Body:** `{ "email", "password" }`  
+**Response 200:** `{ user }` in `data`.
+
+#### `POST /auth/refresh`
+Rotate refresh token. Requires `refresh_token` cookie.  
+**Response 200:** New cookies issued.
+
+#### `POST /auth/logout`
+Revoke refresh token and clear cookies.  
+**Response 200:** `{ message: "Logged out" }`.
+
+#### `GET /auth/me`
+Current user. Requires `access_token` cookie (`authenticate` middleware).  
+**Response 200:** `{ user }` in `data`.
+
+---
+
 ### Users
 
 #### `GET /users`
@@ -186,6 +216,8 @@ Search and filter tickets.
 | 400 | Validation failure (Zod) |
 | 404 | Resource not found |
 | 409 | Invalid status transition |
+| 401 | Missing or invalid auth token |
+| 403 | Authenticated but insufficient role |
 | 500 | Unexpected server error |
 
 ## Error Codes (Application-Level)
@@ -195,4 +227,6 @@ Search and filter tickets.
 | `VALIDATION_ERROR` | 400 | Zod / input validation |
 | `NOT_FOUND` | 404 | Ticket, user, or comment parent not found |
 | `INVALID_STATUS_TRANSITION` | 409 | State machine rejection |
+| `UNAUTHORIZED` | 401 | Invalid credentials or expired token |
+| `FORBIDDEN` | 403 | Role not permitted |
 | `INTERNAL_ERROR` | 500 | Unhandled exception |

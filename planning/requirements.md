@@ -68,6 +68,21 @@ A small internal application for managing customer or internal support tickets. 
 | FR-8.3 | Ticket Details (with comments) |
 | FR-8.4 | Search & Filter |
 
+### FR-9: Authentication (M8+)
+| ID | Requirement |
+|----|-------------|
+| FR-9.1 | Register via `POST /auth/register` (role defaults to `USER`) |
+| FR-9.2 | Login via `POST /auth/login` |
+| FR-9.3 | Refresh session via `POST /auth/refresh` |
+| FR-9.4 | Logout via `POST /auth/logout` (revoke refresh token) |
+| FR-9.5 | Access token: short-lived JWT in httpOnly cookie (15 min) |
+| FR-9.6 | Refresh token: 7-day httpOnly cookie, hashed and revocable in DB |
+| FR-9.7 | `authenticate` middleware validates access token |
+| FR-9.8 | `authorize(...roles)` middleware enforces RBAC |
+| FR-9.9 | Passwords hashed with bcrypt |
+| FR-9.10 | Frontend login/register UI and session management (M9 — planned) |
+| FR-9.11 | Protect ticket routes; `createdBy` from session (M10 — planned) |
+
 ## Non-Functional Requirements
 
 | ID | Requirement |
@@ -81,13 +96,13 @@ A small internal application for managing customer or internal support tickets. 
 | NFR-7 | Simple, functional UI — no over-investment in styling |
 | NFR-8 | README and supporting documentation |
 
-## Out of Scope (v1)
-- Authentication / authorization (roles exist on User but no login flow)
+## Out of Scope (v1 core — M1–M5)
+- ~~Authentication / authorization~~ → **M8 backend done; M9–M10 frontend + route protection planned**
 - Real-time updates (WebSockets)
 - File attachments on tickets or comments
-- Pagination (may be added as future improvement)
+- Pagination (M12 — planned)
 - Email notifications
-- Audit log / history trail
+- Audit log / history trail (M15 — planned)
 
 ## Acceptance Criteria Summary
 1. All API endpoints work and return consistent response shapes.

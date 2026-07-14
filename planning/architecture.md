@@ -40,7 +40,7 @@ We adopt Clean Architecture with **four logical layers**, adapted for an Express
 | Validators | `validators/` | Zod schemas + middleware to validate body/query/params |
 | Services | `services/` | Business logic, state machine, orchestration |
 | Repositories | `repositories/` | Prisma queries; no business rules |
-| Middlewares | `middlewares/` | Error handler, request logger, validation runner |
+| Middlewares | `middlewares/` | Error handler, **authenticate**, **authorize**, validation runner |
 | Types | `types/` | Shared TS types, DTOs, API response shapes |
 | Config | `config/` | Env vars, Prisma client singleton |
 | Utils | `utils/` | Small pure helpers (e.g., ApiError class) |
@@ -91,17 +91,24 @@ Page → Hook/Component → Service (Axios) → Backend API
 **Decision:** Single Express error middleware maps `AppError` subclasses to HTTP status + response envelope.
 **Why:** No try/catch duplication in every controller.
 
-### 6. No Authentication in v1
-**Decision:** `createdBy` is supplied by client; users listed for assignment dropdowns.
-**Why:** Spec does not require auth. Layers are structured so auth middleware can be added later without refactoring services.
+### 6. Authentication (M8+)
+**Decision:** Cookie-based JWT access tokens + hashed refresh tokens in DB.
+**Why:** httpOnly cookies reduce XSS token theft; refresh rotation enables revocation.
+**M8:** Auth endpoints and middleware implemented. Ticket routes still open (M10).
+**See:** [`auth-design.md`](./auth-design.md)
+
+### 7. No Route Protection Yet (M8 → M10)
+**Decision:** Ticket endpoints remain public until M10; `createdBy` still in request body.
+**Why:** Incremental delivery — auth infrastructure first, then wire existing flows.
 
 ## Cross-Cutting Concerns
 
 | Concern | Approach |
 |---------|----------|
 | Logging | `morgan` or lightweight custom logger in dev |
-| CORS | `cors` middleware, frontend origin whitelisted |
-| Env config | `dotenv` + Zod-validated env schema in `config/` |
+| CORS | `cors` middleware, frontend origin whitelisted, `credentials: true` |
+| Auth | JWT in httpOnly cookies; `cookie-parser`; bcrypt + refresh token store |
+| Env config | `dotenv` + Zod-validated env schema in `config/` (incl. `JWT_SECRET`) |
 | DB migrations | Prisma Migrate |
 | API docs | Markdown in `docs/api.md` (deliverable) |
 
