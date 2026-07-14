@@ -1,8 +1,8 @@
 # Current Status
 
 **Last updated:** 2026-07-14  
-**Active milestone:** M9 — Frontend Auth UI (planned)  
-**Latest completed:** M8 — Backend Authentication
+**Active milestone:** M10 — Route Protection & RBAC (planned)  
+**Latest completed:** M9b — Auth UI & Public Landing
 
 ---
 
@@ -11,45 +11,42 @@
 | Area | Status | Notes |
 |------|--------|-------|
 | Backend build | ✅ | `tsc` passes |
-| Backend tests | ✅ | 44/44 passing |
+| Backend tests | ✅ | 54/54 passing |
 | Frontend build | ✅ | `next build` passes |
-| Production (Vercel) | ✅ | Frontend + backend deployed |
+| Production (Vercel) | ⚠️ | Needs redeploy with M9b frontend |
 | Database (Neon) | ✅ | 2 migrations applied |
 | Auth (backend) | ✅ | Register, login, refresh, logout, middleware |
-| Auth (frontend) | ⏳ | Not wired — tickets still use `createdBy` in body |
+| User CRUD (backend) | ✅ | Paginated admin API + PATCH /me |
+| Auth (frontend) | ✅ | Login, signup, landing, AuthProvider, conditional nav |
 | Dark mode | ✅ | Toggle in header |
 
 ---
 
-## Production URLs
+## Recent Changes (M9b)
 
-| App | URL |
-|-----|-----|
-| Frontend | https://frontend-alpha-murex-89.vercel.app |
-| Backend API | https://backend-sigma-eight-96.vercel.app/api |
-
----
-
-## Recent Changes (M8)
-
-- `User.passwordHash` + `RefreshToken` model
-- `POST /api/auth/register`, `/login`, `/refresh`, `/logout`
-- `GET /api/auth/me` with `authenticate` middleware
-- `authenticate` + `authorize(...roles)` middleware
-- bcrypt passwords, JWT access cookie (15 min), hashed refresh tokens (7 days)
-- Migration `20260714061742_add_auth`
+- Stitch-aligned `/login` and `/signup` pages with `AuthLayout`, `PasswordInput`
+- Signup flow wired to `POST /api/auth/register` via `AuthContext.register()`
+- Public landing page at `/` for unauthenticated visitors (Stitch screen)
+- Header hides Tickets / Create / Search tabs when logged out
+- Logout redirects to landing page (`/`)
+- `DESIGN.md` updated with Login, Sign Up, and Landing screen references
 
 ---
 
-## Blockers
+## Previous (M9)
 
-| Blocker | Impact | Action |
-|---------|--------|--------|
-| `JWT_SECRET` not on Vercel | Auth fails in production after redeploy | Add env var + redeploy backend (M11) |
-| Frontend not redeployed since M7/M8 | Production missing theme + auth backend | Redeploy both projects |
+- Admin user CRUD API with pagination
+- `PATCH /api/users/me` for profile updates
+- `GET /api/users/assignees` for ticket dropdowns (ADMIN/AGENT)
+- Frontend: `/admin/users`, RoleBadge, UserTable, forms
+- `withCredentials` on Axios client
 
 ---
 
 ## Next Up
 
-See [`upcoming.md`](./upcoming.md) — **M9: Frontend Auth UI** is the immediate priority.
+**M10:** Protect ticket routes, derive `createdBy` from session, role-based ticket actions.
+
+**M11:** Redeploy frontend + backend to Vercel with latest auth UI.
+
+See [`upcoming.md`](./upcoming.md).

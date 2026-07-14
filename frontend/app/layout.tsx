@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Hanken_Grotesk, JetBrains_Mono } from 'next/font/google';
 import { Header } from '@/components/layout/Header';
 import { ThemeProvider } from '@/context/ThemeContext';
+import { AuthProvider } from '@/context/AuthContext';
 import './globals.css';
 
 const hanken = Hanken_Grotesk({
@@ -46,8 +47,10 @@ export default function RootLayout({
       </head>
       <body className={`${hanken.variable} ${jetbrains.variable} font-sans`}>
         <ThemeProvider>
-          <Header />
-          <main>{children}</main>
+          <AuthProvider>
+            <Header />
+            <main>{children}</main>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

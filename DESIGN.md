@@ -6,7 +6,7 @@
 
 **Source:** Stitch project **Luff-Flow Ticket Manager** (`projects/4825899821429159092`)  
 **Extracted from:** Project design system + screens: Ticket List, Create Ticket, Ticket Details, Search & Filter  
-**Last updated:** 2026-07-13
+**Last updated:** 2026-07-14
 
 ---
 
@@ -28,10 +28,13 @@
 
 | Screen | Stitch Title | Screen ID | Device | Key UI Elements |
 |--------|--------------|-----------|--------|-----------------|
+| Landing | Luff-Flow — Support at the Speed of Flow | `92cffc924c4f4f4f908bc962ad6e2b35` | Desktop 2560×7820 | Hero, feature sections, stats, testimonial, CTA |
 | Ticket List | Dashboard — Ticket List | `7499610d39734031951b24f083dc32ec` | Desktop 1280×1024 | Top nav, sub-header (Board/List/Timeline), ticket cards/table, status chips, search bar |
 | Create Ticket | Create New Ticket | `98d63819c8a24092baf5fb2f2808863a` | Desktop 1280×1025 | Form layout, title/description/priority inputs, primary CTA |
 | Ticket Details | Ticket Details | `c4aa09a642bb468781ed71241c12ff70` | Desktop 1280×1024 | Ticket metadata, status badge, assignee, comment thread, status actions |
 | Search & Filter | Search & Filter Results | `e02686ff664e4a948643f33dd6bdfc0c` | Desktop 1280×1024 | Search input, status filter, filtered results list |
+| Login | Login — Luff-Flow | `9df36f0f6e834a838bff4eb1fce138cd` | Desktop 1280×2048 | Centered auth card, email/password, SSO divider |
+| Sign Up | Sign Up — Luff-Flow | `1a4df0795d964679b19debc384ef7c5f` | Desktop 1280×2048 | Registration form, Google SSO placeholder |
 
 ---
 

@@ -44,7 +44,8 @@ Master index for all project milestones. Status is mirrored in [`pulse/current.m
 | ID | Milestone | Status | Key deliverables |
 |----|-----------|--------|------------------|
 | **M8** | Backend Authentication | ✅ Done | `passwordHash`, `RefreshToken`, `/auth/*`, middleware — see [`auth-design.md`](./auth-design.md) |
-| **M9** | Frontend Auth UI | 📋 Planned | Login/register pages, `withCredentials`, auth context |
+| **M9** | User CRUD & Role Management | ✅ Done | Admin user API, `/admin/users` page, login — see [`user-management.md`](./user-management.md) |
+| **M9b** | Auth UI & Public Landing | ✅ Done | Stitch login/signup, `/signup`, landing page, conditional nav — see [`auth-ui.md`](./auth-ui.md) |
 | **M10** | Route Protection & RBAC | 📋 Planned | Protect ticket routes; `createdBy` from session; role gates |
 
 ---
@@ -53,7 +54,7 @@ Master index for all project milestones. Status is mirrored in [`pulse/current.m
 
 | ID | Milestone | Status | Key deliverables |
 |----|-----------|--------|------------------|
-| **M11** | Production Auth Config | 📋 Planned | `JWT_SECRET` on Vercel; redeploy backend |
+| **M11** | Production Auth Config | 🔄 In progress | `JWT_SECRET` on Vercel; redeploy with M9b frontend |
 | **M12** | Pagination | 📋 Planned | `?page=` or cursor on ticket list/search |
 | **M13** | Frontend E2E Tests | 📋 Planned | Playwright: login, create ticket, status change |
 | **M14** | Separate Test Database | 📋 Planned | Neon branch for integration tests |
@@ -84,3 +85,5 @@ Master index for all project milestones. Status is mirrored in [`pulse/current.m
 | 2026-07-13 | M6 | Deployed to Vercel (backend + frontend) |
 | 2026-07-13 | M7 | Dark/light theme toggle |
 | 2026-07-14 | M8 | Backend auth: bcrypt, JWT cookies, refresh tokens, middleware |
+| 2026-07-14 | M9 | User CRUD & role management (admin API + frontend) |
+| 2026-07-14 | M9b | Stitch auth UI (login/signup), public landing page, conditional nav |

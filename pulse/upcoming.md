@@ -4,26 +4,6 @@ Planned work in priority order. Full roadmap: [`planning/milestones.md`](../plan
 
 ---
 
-## M9 — Frontend Auth UI 📋
-
-**Goal:** Login and register pages; session-aware app shell.
-
-| Task | Details |
-|------|---------|
-| Login page | `/login` — email + password form |
-| Register page | `/register` — name, email, password |
-| Axios config | `withCredentials: true` for cookie auth |
-| Auth context | `useAuth()`, load user via `GET /api/auth/me` |
-| Auto-refresh | Call `POST /api/auth/refresh` on 401 before redirect |
-| Header | Show user name + logout button |
-
-**Acceptance criteria:**
-- User can register, login, logout in browser
-- Session persists across page reload
-- Unauthenticated users redirected from protected routes (prep for M10)
-
----
-
 ## M10 — Route Protection & RBAC 📋
 
 **Goal:** Secure ticket API; derive identity from session.
@@ -43,15 +23,15 @@ Planned work in priority order. Full roadmap: [`planning/milestones.md`](../plan
 
 ---
 
-## M11 — Production Auth Config 📋
+## M11 — Production Auth Config 🔄
 
-**Goal:** Auth works on Vercel production.
+**Goal:** Auth works on Vercel production with latest M9b frontend.
 
 | Task | Details |
 |------|---------|
-| Vercel env | Add `JWT_SECRET` to backend project |
-| Redeploy | Backend + frontend with latest code |
-| Verify | Login on production URL end-to-end |
+| Vercel env | `JWT_SECRET` on backend (done); verify `CORS_ORIGIN` |
+| Redeploy | Backend + frontend with login/signup/landing |
+| Verify | Register, login, landing page on production URL |
 
 ---
 

@@ -11,5 +11,8 @@
 | 08 | [08-deployment.md](./08-deployment.md) | Vercel deployment (backend serverless + frontend) | M6 — Deployment |
 | 09 | [09-dark-mode.md](./09-dark-mode.md) | Dark/light theme toggle across entire app | M7 — Theme |
 | 10 | [10-auth.md](./10-auth.md) | Backend authentication, refresh tokens, middleware | M8 — Auth |
+| 11 | [11-user-management.md](./11-user-management.md) | User CRUD, role management, admin UI | M9 — User Management |
+| 12 | [12-auth-ui.md](./12-auth-ui.md) | Stitch login/signup pages, signup flow | M9b — Auth UI |
+| 13 | [13-landing-page.md](./13-landing-page.md) | Public landing page, conditional nav tabs | M9b — Landing |
 
 **Roadmap:** [`planning/milestones.md`](../planning/milestones.md) · **Status:** [`pulse/current.md`](../pulse/current.md)

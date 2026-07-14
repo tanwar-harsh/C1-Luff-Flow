@@ -19,16 +19,9 @@ describe.skipIf(!dbAvailable)('Users API (Integration)', () => {
     await prisma.$disconnect();
   });
 
-  it('GET /api/users returns all users', async () => {
+  it('GET /api/users requires admin authentication', async () => {
     const response = await request(app).get('/api/users');
-    expect(response.status).toBe(200);
-    expect(response.body.success).toBe(true);
-    expect(response.body.data).toHaveLength(3);
-    expect(response.body.data[0]).toMatchObject({
-      name: expect.any(String),
-      email: expect.any(String),
-      role: expect.any(String),
-    });
+    expect(response.status).toBe(401);
   });
 });
 

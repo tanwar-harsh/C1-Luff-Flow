@@ -1,4 +1,4 @@
-import { TicketStatus } from '@/types/domain';
+import { Role, TicketStatus } from '@/types/domain';
 
 export const VALID_TRANSITIONS: Record<TicketStatus, TicketStatus[]> = {
   OPEN: ['IN_PROGRESS', 'CANCELLED'],
@@ -22,6 +22,12 @@ export const PRIORITY_LABELS = {
   HIGH: 'High',
   CRITICAL: 'Critical',
 } as const;
+
+export const ROLE_LABELS: Record<Role, string> = {
+  ADMIN: 'Admin',
+  AGENT: 'Agent',
+  USER: 'User',
+};
 
 export function getNextStatuses(current: TicketStatus): TicketStatus[] {
   return VALID_TRANSITIONS[current];
