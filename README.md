@@ -32,6 +32,36 @@ npm run dev                     # http://localhost:3000
 cd backend && npm test          # 34 tests
 ```
 
+## Deploy to Vercel
+
+Use **two Vercel projects** (backend + frontend) from the same GitHub repo. Full guide: [`docs/deployment-vercel.md`](./docs/deployment-vercel.md).
+
+| Project | Root directory | Key env vars |
+|---------|----------------|--------------|
+| API | `backend` | `DATABASE_URL`, `CORS_ORIGIN` |
+| Web | `frontend` | `NEXT_PUBLIC_API_URL` |
+
+```bash
+# 1. Push to GitHub, then import twice at vercel.com/new
+
+# 2. Backend — set DATABASE_URL (Neon pooler URL) and CORS_ORIGIN
+#    Verify: curl https://YOUR-API.vercel.app/api/health
+
+# 3. Frontend — set NEXT_PUBLIC_API_URL=https://YOUR-API.vercel.app/api
+
+# 4. Update backend CORS_ORIGIN with frontend URL, redeploy backend
+
+# Optional: seed production DB
+cd backend && DATABASE_URL="..." npm run db:seed
+```
+
+Or via CLI (after `npx vercel login`):
+
+```bash
+cd backend && npx vercel --prod    # deploy API first
+cd ../frontend && npx vercel --prod
+```
+
 ---
 
 ## Folder Structure
@@ -252,6 +282,7 @@ See [`testing/test-plan.md`](./testing/test-plan.md) and [`testing/integration-r
 |----------|---------|
 | [`DESIGN.md`](./DESIGN.md) | UI design tokens |
 | [`docs/api.md`](./docs/api.md) | API reference |
+| [`docs/deployment-vercel.md`](./docs/deployment-vercel.md) | **Deploy to Vercel** (frontend + backend) |
 | [`tool-workflow.md`](./tool-workflow.md) | AI development workflow |
 | [`planning/`](./planning/) | Requirements, architecture, design |
 | [`testing/`](./testing/) | Test plan and results |

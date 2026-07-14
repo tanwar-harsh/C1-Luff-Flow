@@ -1,16 +1,18 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
+  darkMode: 'class',
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './context/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       colors: {
-        background: '#f7f9fb',
-        foreground: '#191c1e',
-        'on-surface-variant': '#434655',
+        background: 'var(--color-background)',
+        foreground: 'var(--color-foreground)',
+        'on-surface-variant': 'var(--color-on-surface-variant)',
         primary: {
           DEFAULT: '#2563eb',
           dark: '#004ac6',
@@ -19,25 +21,25 @@ const config: Config = {
         },
         secondary: {
           DEFAULT: '#505f76',
-          container: '#d0e1fb',
-          foreground: '#54647a',
+          container: 'var(--color-secondary-container)',
+          foreground: 'var(--color-secondary-foreground)',
         },
         surface: {
-          DEFAULT: '#f7f9fb',
-          container: '#eceef0',
-          'container-low': '#f2f4f6',
-          'container-lowest': '#ffffff',
-          'container-high': '#e6e8ea',
+          DEFAULT: 'var(--color-surface)',
+          container: 'var(--color-surface-container)',
+          'container-low': 'var(--color-surface-container-low)',
+          'container-lowest': 'var(--color-surface-container-lowest)',
+          'container-high': 'var(--color-surface-container-high)',
         },
         outline: {
-          DEFAULT: '#737686',
-          variant: '#c3c6d7',
-          nav: '#e2e8f0',
+          DEFAULT: 'var(--color-outline)',
+          variant: 'var(--color-outline-variant)',
+          nav: 'var(--color-outline-nav)',
         },
         error: {
           DEFAULT: '#ba1a1a',
-          container: '#ffdad6',
-          foreground: '#93000a',
+          container: 'var(--color-error-container)',
+          foreground: 'var(--color-error-foreground)',
         },
         status: {
           open: '#2563eb',
@@ -52,7 +54,7 @@ const config: Config = {
           high: '#d97706',
           critical: '#e11d48',
         },
-        'row-hover': '#f1f5f9',
+        'row-hover': 'var(--color-row-hover)',
       },
       fontFamily: {
         sans: ['var(--font-hanken)', 'system-ui', 'sans-serif'],

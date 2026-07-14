@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Hanken_Grotesk, JetBrains_Mono } from 'next/font/google';
 import { Header } from '@/components/layout/Header';
+import { ThemeProvider } from '@/context/ThemeContext';
 import './globals.css';
 
 const hanken = Hanken_Grotesk({
@@ -20,16 +21,34 @@ export const metadata: Metadata = {
   description: 'Support ticket management system',
 };
 
+const themeInitScript = `
+(function() {
+  try {
+    var stored = localStorage.getItem('luff-flow-theme');
+    var dark = stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    if (dark) {
+      document.documentElement.classList.add('dark');
+      document.documentElement.style.colorScheme = 'dark';
+    }
+  } catch (e) {}
+})();
+`;
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className={`${hanken.variable} ${jetbrains.variable} font-sans`}>
-        <Header />
-        <main>{children}</main>
+        <ThemeProvider>
+          <Header />
+          <main>{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );

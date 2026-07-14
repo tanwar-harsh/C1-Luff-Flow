@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 const navLinks = [
   { href: '/', label: 'Tickets' },
@@ -13,12 +14,12 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="border-b border-outline-nav bg-surface-container-lowest">
+    <header className="border-b border-outline-nav bg-surface-container-lowest transition-colors duration-200">
       <div className="mx-auto flex h-14 max-w-content items-center justify-between px-4 md:px-margin">
         <Link href="/" className="text-headline-sm text-foreground">
           Luff-Flow
         </Link>
-        <nav className="flex items-center gap-6">
+        <nav className="flex items-center gap-4 md:gap-6">
           {navLinks.map((link) => {
             const isActive =
               link.href === '/'
@@ -38,6 +39,7 @@ export function Header() {
               </Link>
             );
           })}
+          <ThemeToggle />
         </nav>
       </div>
     </header>

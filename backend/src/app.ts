@@ -12,7 +12,12 @@ export function createApp(repositories?: Repositories): Express {
   const app = express();
   const repos = repositories ?? createRepositories(prisma);
 
-  app.use(cors({ origin: env.CORS_ORIGIN }));
+  app.use(
+    cors({
+      origin: env.CORS_ORIGIN,
+      credentials: true,
+    }),
+  );
   app.use(morgan(env.NODE_ENV === 'test' ? 'tiny' : 'dev'));
   app.use(express.json());
 

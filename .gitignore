@@ -38,5 +38,7 @@ coverage/
 backend/prisma/*.db
 backend/prisma/*.db-journal
 
-# Stitch reference assets (optional local downloads)
-stitch-assets/
+# Vercel
+.vercel/
+backend/.vercel/
+frontend/.vercel/
