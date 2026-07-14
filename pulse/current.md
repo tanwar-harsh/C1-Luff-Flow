@@ -13,7 +13,7 @@
 | Backend build | ✅ | `tsc` passes |
 | Backend tests | ✅ | 54/54 passing |
 | Frontend build | ✅ | `next build` passes |
-| Production (Vercel) | ⚠️ | Needs redeploy with M9b frontend |
+| Production (Vercel) | ✅ | Redeployed 2026-07-14 with auth UI + landing |
 | Database (Neon) | ✅ | 2 migrations applied |
 | Auth (backend) | ✅ | Register, login, refresh, logout, middleware |
 | User CRUD (backend) | ✅ | Paginated admin API + PATCH /me |
@@ -46,7 +46,5 @@
 ## Next Up
 
 **M10:** Protect ticket routes, derive `createdBy` from session, role-based ticket actions.
-
-**M11:** Redeploy frontend + backend to Vercel with latest auth UI.
 
 See [`upcoming.md`](./upcoming.md).

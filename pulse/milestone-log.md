@@ -101,3 +101,12 @@ Chronological record of completed work.
 - Conditional header: nav tabs only when authenticated
 - Signup → `POST /api/auth/register`; logout → `/`
 - **Spec:** [`planning/auth-ui.md`](../planning/auth-ui.md)
+
+---
+
+## Vercel Redeploy (2026-07-14)
+
+- Backend + frontend redeployed with M8/M9/M9b changes
+- Backend env: `DATABASE_URL`, `CORS_ORIGIN`, `JWT_SECRET`
+- Frontend env: `NEXT_PUBLIC_API_URL` → `https://backend-sigma-eight-96.vercel.app/api`
+- **URLs:** frontend-alpha-murex-89.vercel.app, backend-sigma-eight-96.vercel.app

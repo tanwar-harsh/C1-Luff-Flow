@@ -54,13 +54,12 @@ Master index for all project milestones. Status is mirrored in [`pulse/current.m
 
 | ID | Milestone | Status | Key deliverables |
 |----|-----------|--------|------------------|
-| **M11** | Production Auth Config | 🔄 In progress | `JWT_SECRET` on Vercel; redeploy with M9b frontend |
-| **M12** | Pagination | 📋 Planned | `?page=` or cursor on ticket list/search |
-| **M13** | Frontend E2E Tests | 📋 Planned | Playwright: login, create ticket, status change |
-| **M14** | Separate Test Database | 📋 Planned | Neon branch for integration tests |
-| **M15** | Audit Log | 📋 Planned | Status change history with actor + timestamp |
-| **M16** | OpenAPI / Swagger | 📋 Planned | Auto-generated docs from Zod schemas |
-| **M17** | CI/CD Pipeline | 📋 Planned | GitHub Actions: lint, test, build on PR |
+| **M11** | Pagination | 📋 Planned | `?page=` or cursor on ticket list/search |
+| **M12** | Frontend E2E Tests | 📋 Planned | Playwright: login, create ticket, status change |
+| **M13** | Separate Test Database | 📋 Planned | Neon branch for integration tests |
+| **M14** | Audit Log | 📋 Planned | Status change history with actor + timestamp |
+| **M15** | OpenAPI / Swagger | 📋 Planned | Auto-generated docs from Zod schemas |
+| **M16** | CI/CD Pipeline | 📋 Planned | GitHub Actions: lint, test, build on PR |
 
 ---
 
@@ -87,3 +86,4 @@ Master index for all project milestones. Status is mirrored in [`pulse/current.m
 | 2026-07-14 | M8 | Backend auth: bcrypt, JWT cookies, refresh tokens, middleware |
 | 2026-07-14 | M9 | User CRUD & role management (admin API + frontend) |
 | 2026-07-14 | M9b | Stitch auth UI (login/signup), public landing page, conditional nav |
+| 2026-07-14 | Deploy | Redeployed backend + frontend to Vercel (auth UI, landing, JWT_SECRET) |

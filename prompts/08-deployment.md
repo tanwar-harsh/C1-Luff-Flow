@@ -19,3 +19,10 @@ Ship the application to production for demo and end-to-end verification.
 ## Production URLs
 - Frontend: https://frontend-alpha-murex-89.vercel.app
 - Backend: https://backend-sigma-eight-96.vercel.app/api
+
+## Redeploys
+
+| Date | Notes |
+|------|-------|
+| 2026-07-13 | Initial M6 deploy |
+| 2026-07-14 | Auth (M8/M9), login/signup/landing (M9b), `JWT_SECRET` on backend |

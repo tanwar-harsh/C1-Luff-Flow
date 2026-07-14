@@ -74,7 +74,7 @@ C1-Assignment/
 ├── docs/
 │   └── api.md                 # API reference
 ├── planning/                  # M1 design documents + milestone roadmap
-│   ├── milestones.md          # Master milestone index (M1–M17)
+│   ├── milestones.md          # Master milestone index (M1–M16)
 │   ├── auth-design.md         # M8 authentication spec
 │   ├── requirements.md
 │   ├── assumptions.md
@@ -288,7 +288,7 @@ See [`testing/test-plan.md`](./testing/test-plan.md) and [`testing/integration-r
 |----------|---------|
 | [`DESIGN.md`](./DESIGN.md) | UI design tokens |
 | [`docs/api.md`](./docs/api.md) | API reference |
-| [`planning/milestones.md`](./planning/milestones.md) | Milestone roadmap (M1–M17) |
+| [`planning/milestones.md`](./planning/milestones.md) | Milestone roadmap (M1–M16) |
 | [`planning/auth-design.md`](./planning/auth-design.md) | M8 authentication spec |
 | [`docs/deployment-vercel.md`](./docs/deployment-vercel.md) | **Deploy to Vercel** (frontend + backend) |
 | [`tool-workflow.md`](./tool-workflow.md) | AI development workflow |

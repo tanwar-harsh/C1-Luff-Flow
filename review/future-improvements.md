@@ -7,6 +7,8 @@ Prioritized enhancements beyond core scope. See [`pulse/upcoming.md`](../pulse/u
 | Item | Milestone | Notes |
 |------|-----------|-------|
 | Authentication (backend) | M8 | JWT cookies, refresh tokens, middleware |
+| User CRUD & admin UI | M9 | Admin API, `/admin/users` |
+| Auth UI & landing page | M9b | Stitch login/signup, public landing |
 | Dark mode | M7 | Theme toggle, CSS variables |
 | Vercel deployment | M6 | Backend + frontend live |
 
@@ -14,12 +16,10 @@ Prioritized enhancements beyond core scope. See [`pulse/upcoming.md`](../pulse/u
 
 | # | Improvement | Milestone | Why |
 |---|-------------|-----------|-----|
-| 1 | **Frontend auth UI** | M9 | Login/register pages, session context |
-| 2 | **Route protection & RBAC** | M10 | `createdBy` from session; protect ticket routes |
-| 3 | **Production auth config** | M11 | `JWT_SECRET` on Vercel |
-| 4 | **Separate test database** | M14 | Neon branch — stop wiping dev data |
-| 5 | **Pagination** | M12 | Ticket list will not scale without `?page=` |
-| 6 | **Frontend E2E tests** | M13 | Playwright for auth + ticket flows |
+| 1 | **Route protection & RBAC** | M10 | `createdBy` from session; protect ticket routes |
+| 2 | **Pagination** | M11 | Ticket list will not scale without `?page=` |
+| 3 | **Frontend E2E tests** | M12 | Playwright for auth + ticket flows |
+| 4 | **Separate test database** | M13 | Neon branch — stop wiping dev data |
 
 ## Medium Priority
 
@@ -27,10 +27,10 @@ Prioritized enhancements beyond core scope. See [`pulse/upcoming.md`](../pulse/u
 |---|-------------|-----------|-----|
 | 7 | **React Query / SWR** | Backlog | Replace `useEffect` fetching with cache |
 | 8 | **Ticket update form on detail page** | Backlog | Title/description edit UI missing |
-| 9 | **Audit log** | M15 | Track status changes with actor |
+| 9 | **Audit log** | M14 | Track status changes with actor |
 | 10 | **Email notifications** | Backlog | Notify assignee on changes |
 | 11 | **Rate limiting** | Backlog | Protect API from abuse |
-| 12 | **OpenAPI / Swagger** | M16 | Auto-generated API docs |
+| 12 | **OpenAPI / Swagger** | M15 | Auto-generated API docs |
 
 ## Low Priority
 
@@ -41,7 +41,7 @@ Prioritized enhancements beyond core scope. See [`pulse/upcoming.md`](../pulse/u
 | 15 | **Soft delete** | Archive tickets |
 | 16 | **Prisma config migration** | `package.json#prisma` → `prisma.config.ts` |
 | 17 | **Docker Compose** | One-command local dev |
-| 18 | **CI/CD pipeline** | M17 — GitHub Actions on PR |
+| 18 | **CI/CD pipeline** | M16 — GitHub Actions on PR |
 
 ## Technical Debt
 
@@ -50,4 +50,3 @@ Prioritized enhancements beyond core scope. See [`pulse/upcoming.md`](../pulse/u
 - `express.d.ts` uses `unknown` for validated request — could use generics
 - No request logging correlation IDs
 - Frontend `TicketDetailView` uses dynamic import for refresh — could use callback prop
-- Production Vercel needs `JWT_SECRET` and redeploy after M8
