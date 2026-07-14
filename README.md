@@ -4,6 +4,16 @@ A full-stack application for managing support tickets with a strict status state
 
 https://frontend-alpha-murex-89.vercel.app/
 
+## Demo Accounts
+
+Use these accounts after running `npm run db:seed` (or `npm run db:seed:demo` for users only):
+
+| Email | Password | Role | Access |
+|-------|----------|------|--------|
+| `user@example.com` | `Password123!` | USER | View only |
+| `agent@example.com` | `Password123!` | AGENT | Create & manage tickets |
+| `admin@example.com` | `Password123!` | ADMIN | Full access + Users tab |
+
 ## Screenshots
 
 Design screens exported from [Stitch](https://stitch.withgoogle.com) (see [`DESIGN.md`](./DESIGN.md)).
