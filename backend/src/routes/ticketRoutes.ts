@@ -2,6 +2,8 @@ import { Router } from 'express';
 import { Services } from '../services';
 import { createTicketController } from '../controllers/ticketController';
 import { createCommentController } from '../controllers/commentController';
+import { authenticate } from '../middlewares/authenticate';
+import { authorize } from '../middlewares/authorize';
 import { validate } from '../validators/validate';
 import {
   createCommentSchema,
@@ -12,6 +14,8 @@ import {
   updateTicketSchema,
 } from '../validators/schemas';
 
+const staffOnly = [authenticate, authorize('AGENT', 'ADMIN')];
+
 export function createTicketRoutes(services: Services): Router {
   const router = Router();
   const ticketController = createTicketController(services);
@@ -20,26 +24,30 @@ export function createTicketRoutes(services: Services): Router {
   // Search must be registered before /:id to avoid route collision
   router.get(
     '/search',
+    authenticate,
     validate(searchTicketsSchema, 'query'),
     ticketController.searchTickets,
   );
 
-  router.get('/', ticketController.listTickets);
+  router.get('/', authenticate, ticketController.listTickets);
 
   router.post(
     '/',
+    ...staffOnly,
     validate(createTicketSchema, 'body'),
     ticketController.createTicket,
   );
 
   router.get(
     '/:id',
+    authenticate,
     validate(idParamSchema, 'params'),
     ticketController.getTicketById,
   );
 
   router.put(
     '/:id',
+    ...staffOnly,
     validate(idParamSchema, 'params'),
     validate(updateTicketSchema, 'body'),
     ticketController.updateTicket,
@@ -47,6 +55,7 @@ export function createTicketRoutes(services: Services): Router {
 
   router.patch(
     '/:id/status',
+    ...staffOnly,
     validate(idParamSchema, 'params'),
     validate(updateStatusSchema, 'body'),
     ticketController.updateTicketStatus,
@@ -54,6 +63,7 @@ export function createTicketRoutes(services: Services): Router {
 
   router.post(
     '/:id/comments',
+    ...staffOnly,
     validate(idParamSchema, 'params'),
     validate(createCommentSchema, 'body'),
     commentController.addComment,

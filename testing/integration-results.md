@@ -1,18 +1,19 @@
 # Integration Test Results
 
-**Date:** 2026-07-13  
-**Milestone:** 5 — Testing, Review & Documentation  
-**Environment:** Neon PostgreSQL (PostgreSQL 18 via Neon serverless)
+**Last updated:** 2026-07-14 (M10 — RBAC)  
+**Environment:** PostgreSQL via `.env.test` (local) or skipped if unavailable
 
 ## Summary
 
 | Category | Files | Tests | Passed | Failed |
 |----------|-------|-------|--------|--------|
 | Unit | 2 | 12 | 12 | 0 |
-| Integration | 3 | 22 | 22 | 0 |
-| **Total** | **5** | **34** | **34** | **0** |
+| Integration | 6 | 46 | 46 | 0 |
+| **Total** | **8** | **58** | **58** | **0** |
 
 **Result: ✅ ALL TESTS PASSING**
+
+> Includes M8 auth, M9 users, M10 RBAC (401/403 cases). Integration tests use `.env.test` only — no fallback to production `.env`.
 
 ## Unit Test Results
 
@@ -59,17 +60,17 @@
 
 ## Notes
 
-- Tests run against Neon PostgreSQL with `sslmode=require`
-- Test setup falls back to `.env` DATABASE_URL when `.env.test` points to localhost
-- Integration suites call `resetDatabase()` — re-run `npm run db:seed` after tests for dev data
-- Duration: ~59s (Neon network latency on integration suites)
+- Integration tests use **only** `.env.test` (no `.env` fallback) to protect shared Neon DB
+- Authenticated tests use `loginAsAgent` / `loginAsUser` helpers with cookies
+- Production demo accounts: `npm run db:seed:demo` (safe upsert, no wipe)
+- Run `npm run db:seed` or `db:seed:demo` after tests if local dev data needed
 
 ## How to Reproduce
 
 ```bash
 cd backend
-# Ensure DATABASE_URL in .env points to a PostgreSQL instance (local or Neon)
+# Configure .env.test with local PostgreSQL test DB
 npx prisma migrate deploy
 npm test
-npm run db:seed   # restore sample data after tests
+npm run db:seed:demo   # restore demo login accounts
 ```

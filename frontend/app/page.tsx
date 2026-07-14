@@ -3,6 +3,7 @@
 import { useAuth } from '@/context/AuthContext';
 import { LandingPage } from '@/components/landing/LandingPage';
 import { TicketListView } from '@/components/tickets/TicketListView';
+import { RequireAuth } from '@/components/auth/RequireAuth';
 
 export default function HomePage() {
   const { user, isLoading } = useAuth();
@@ -17,5 +18,9 @@ export default function HomePage() {
     return <LandingPage />;
   }
 
-  return <TicketListView />;
+  return (
+    <RequireAuth>
+      <TicketListView />
+    </RequireAuth>
+  );
 }

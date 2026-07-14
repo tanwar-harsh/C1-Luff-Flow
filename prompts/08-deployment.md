@@ -25,4 +25,5 @@ Ship the application to production for demo and end-to-end verification.
 | Date | Notes |
 |------|-------|
 | 2026-07-13 | Initial M6 deploy |
-| 2026-07-14 | Auth (M8/M9), login/signup/landing (M9b), `JWT_SECRET` on backend |
+| 2026-07-14 AM | Auth (M8/M9), login/signup/landing (M9b), `JWT_SECRET` |
+| 2026-07-14 PM | RBAC (M10), centered navbar, `db:seed:demo`, test DB isolation |

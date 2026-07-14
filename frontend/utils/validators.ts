@@ -9,7 +9,6 @@ export const createTicketSchema = z.object({
   priority: z.enum(['LOW', 'MEDIUM', 'HIGH', 'CRITICAL'], {
     errorMap: () => ({ message: 'Please select a priority' }),
   }),
-  createdBy: z.string().min(1, 'Please select a creator'),
   assignedTo: z.string().optional(),
 });
 
@@ -17,7 +16,6 @@ export type CreateTicketFormData = z.infer<typeof createTicketSchema>;
 
 export const createCommentSchema = z.object({
   message: z.string().min(1, 'Message is required'),
-  createdBy: z.string().min(1, 'Please select a user'),
 });
 
 export type CreateCommentFormData = z.infer<typeof createCommentSchema>;

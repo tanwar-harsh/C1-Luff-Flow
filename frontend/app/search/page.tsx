@@ -3,6 +3,7 @@
 import { useCallback, useState } from 'react';
 import { PageContainer } from '@/components/layout/PageContainer';
 import { TicketTable } from '@/components/tickets/TicketTable';
+import { RequireAuth } from '@/components/auth/RequireAuth';
 import { Input } from '@/components/ui/Input';
 import { Select } from '@/components/ui/Select';
 import { Button } from '@/components/ui/Button';
@@ -45,42 +46,41 @@ export default function SearchPage() {
   }, [query, status]);
 
   return (
-    <PageContainer
-      title="Search & Filter"
-      subtitle="Find tickets by keyword or status"
-    >
-      <div className="mb-6 flex flex-col gap-4 rounded-lg bg-surface-container-lowest p-6 md:flex-row md:items-end">
-        <div className="flex-1">
-          <Input
-            label="Keyword"
-            placeholder="e.g. payment"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-          />
+    <RequireAuth>
+      <PageContainer title="Search & Filter" subtitle="Find tickets by keyword or status">
+        <div className="mb-6 flex flex-col gap-4 rounded-lg bg-surface-container-lowest p-6 md:flex-row md:items-end">
+          <div className="flex-1">
+            <Input
+              label="Keyword"
+              placeholder="e.g. payment"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+            />
+          </div>
+          <div className="w-full md:w-48">
+            <Select
+              label="Status"
+              options={statusOptions}
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+            />
+          </div>
+          <Button onClick={handleSearch} isLoading={loading}>
+            Search
+          </Button>
         </div>
-        <div className="w-full md:w-48">
-          <Select
-            label="Status"
-            options={statusOptions}
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-          />
-        </div>
-        <Button onClick={handleSearch} isLoading={loading}>
-          Search
-        </Button>
-      </div>
 
-      {error && <Alert message={error} />}
+        {error && <Alert message={error} />}
 
-      {searched && (
-        <p className="mb-4 font-mono text-label-md text-on-surface-variant">
-          {tickets.length} result{tickets.length !== 1 ? 's' : ''} found
-        </p>
-      )}
+        {searched && (
+          <p className="mb-4 font-mono text-label-md text-on-surface-variant">
+            {tickets.length} result{tickets.length !== 1 ? 's' : ''} found
+          </p>
+        )}
 
-      {searched && <TicketTable tickets={tickets} />}
-    </PageContainer>
+        {searched && <TicketTable tickets={tickets} />}
+      </PageContainer>
+    </RequireAuth>
   );
 }

@@ -38,7 +38,6 @@ export function CreateTicketForm({ users }: CreateTicketFormProps) {
     resolver: zodResolver(createTicketSchema),
     defaultValues: {
       priority: 'MEDIUM',
-      createdBy: users.find((u) => u.role === 'USER')?.id ?? users[0]?.id ?? '',
     },
   });
 
@@ -54,7 +53,6 @@ export function CreateTicketForm({ users }: CreateTicketFormProps) {
         title: data.title,
         description: data.description,
         priority: data.priority,
-        createdBy: data.createdBy,
         assignedTo: data.assignedTo || null,
       });
       router.push(`/tickets/${ticket.id}`);
@@ -92,13 +90,6 @@ export function CreateTicketForm({ users }: CreateTicketFormProps) {
         options={priorityOptions}
         error={errors.priority?.message}
         {...register('priority')}
-      />
-
-      <Select
-        label="Created By"
-        options={userOptions}
-        error={errors.createdBy?.message}
-        {...register('createdBy')}
       />
 
       <Select

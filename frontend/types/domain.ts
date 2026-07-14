@@ -48,7 +48,6 @@ export interface CreateTicketInput {
   title: string;
   description: string;
   priority: Priority;
-  createdBy: string;
   assignedTo?: string | null;
 }
 
@@ -61,7 +60,6 @@ export interface UpdateTicketInput {
 
 export interface CreateCommentInput {
   message: string;
-  createdBy: string;
 }
 
 export interface SearchTicketsParams {

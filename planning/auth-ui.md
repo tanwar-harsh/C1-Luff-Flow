@@ -42,13 +42,14 @@ Stitch-aligned authentication screens and a public marketing landing page. Unaut
 
 ## Header Behavior
 
-| Auth state | Nav tabs (Tickets, Create, Search) | Auth actions |
-|------------|-------------------------------------|--------------|
-| Logged out | Hidden | Sign In + Get Started |
-| Logged in | Visible | User name + Logout |
-| `/login`, `/signup` | Header hidden (uses `AuthLayout`) | — |
+| Auth state | Nav tabs | Layout |
+|------------|----------|--------|
+| Logged out | Hidden | Logo left · Sign In / Get Started right |
+| Logged in | Centered: Tickets, Create*, Search, Users† | Logo left · tabs center · user + theme right |
 
-Admin **Users** tab visible only when `role === 'ADMIN'`.
+\* Create hidden for USER. † Users hidden except ADMIN.
+
+On `/login` and `/signup`, header is hidden (uses `AuthLayout`).
 
 ## Components
 

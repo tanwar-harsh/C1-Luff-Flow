@@ -26,7 +26,6 @@ export const createTicketSchema = z.object({
     .string({ required_error: 'Description is required' })
     .min(10, 'Description must be at least 10 characters'),
   priority: prioritySchema,
-  createdBy: z.string({ required_error: 'createdBy is required' }).min(1, 'createdBy is required'),
   assignedTo: z.string().min(1).optional().nullable(),
 });
 
@@ -54,9 +53,6 @@ export const createCommentSchema = z.object({
   message: z
     .string({ required_error: 'Message is required' })
     .min(1, 'Message is required'),
-  createdBy: z
-    .string({ required_error: 'createdBy is required' })
-    .min(1, 'createdBy is required'),
 });
 
 export const searchTicketsSchema = z.object({
