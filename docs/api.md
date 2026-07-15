@@ -1,5 +1,7 @@
 # API Documentation
 
+> **Authoritative contract:** See [`api-contract.md`](./api-contract.md) — cross-checked against route files (method, path, body, response, error codes). This file is kept for narrative examples; some sections below are outdated (e.g. `createdBy` in ticket body, `GET /users` without auth).
+
 Base URL: `http://localhost:3001/api`
 
 All responses use the envelope: `{ success: boolean, data?: T, error?: { message, code, details? } }`
