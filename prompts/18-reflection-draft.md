@@ -13,8 +13,7 @@
 5. > Just FYI I have deleted reflections.md file, will iterate on it later.
 
 ## Delivered
-- [`REFLECTION.md`](../REFLECTION.md) at project root — 2 trade-offs from user answers, production login debug session, “what I'd do differently”
-- Third trade-off skipped per user request
+- [`REFLECTION.md`](../REFLECTION.md) at project root — full Q&A: 3 trade-offs (Prisma, state machine, comments schema), Stitch MCP debug story, planning/testing/AI workflow lessons
 
 ## Status
-User deleted prior `reflection/reflection.md` iteration; will refine `REFLECTION.md` later.
+✅ **Complete** (2026-07-15) — user-supplied answers incorporated.
