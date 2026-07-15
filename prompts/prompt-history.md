@@ -16,5 +16,15 @@
 | 13 | [13-landing-page.md](./13-landing-page.md) | Public landing page, conditional nav tabs | M9b — Landing |
 | 14 | [14-rbac.md](./14-rbac.md) | Route protection, role-based UI gates | M10 — RBAC |
 | 15 | [15-navbar-and-prod-fix.md](./15-navbar-and-prod-fix.md) | Centered navbar, demo seed, prod login fix | Deploy |
+| 16 | [16-readme-updates.md](./16-readme-updates.md) | README overhaul, Stitch screenshots, demo accounts, seed | Docs |
+| 17 | [17-ai-workflow.md](./17-ai-workflow.md) | `prompt-log.md`, full prompt tracking, `iteration-cycles.md` | Docs — AI workflow |
+| 18 | [18-reflection-draft.md](./18-reflection-draft.md) | REFLECTION.md via Q&A (2 trade-offs; third skipped) | Docs — Reflection |
+| 19 | [19-ticket-service-tests.md](./19-ticket-service-tests.md) | TicketService Vitest unit tests (mocked repos) | Testing |
+| 20 | [20-status-actions-tests.md](./20-status-actions-tests.md) | StatusActions RTL component tests | Testing — Frontend |
+| 21 | [21-requirements-assumptions.md](./21-requirements-assumptions.md) | `REQUIREMENTS.md` + `ASSUMPTIONS.md` as implemented | Docs |
+| 22 | [22-api-contract.md](./22-api-contract.md) | `docs/api-contract.md` — all 20 routes | Docs — API |
+| 23 | [23-migrations.md](./23-migrations.md) | `MIGRATIONS.md` — Prisma workflow & seed | Docs — Database |
+
+**Full chronology:** [`docs/ai-workflow/prompt-log.md`](../docs/ai-workflow/prompt-log.md)
 
 **Roadmap:** [`planning/milestones.md`](../planning/milestones.md) · **Status:** [`pulse/current.md`](../pulse/current.md)

@@ -144,7 +144,9 @@ Support Ticket Management System — a full-stack app for managing support ticke
 | AI generates code from design docs | Developers implement from tickets |
 | Stitch MCP for design tokens | Figma → design system handoff |
 | Single developer + AI | Team with dedicated QA, DevOps |
-| `prompts/` folder logs AI interaction | Not typical; useful for assignment reflection |
+| `prompts/` folder logs AI interaction (01–23) | Not typical; useful for assignment reflection |
+| `docs/ai-workflow/prompt-log.md` | Full chronological prompt transcript |
+| `docs/ai-workflow/iteration-cycles.md` | Where AI output was corrected |
 
 **Key similarity:** Design before code, tests before merge, documentation as deliverable.
 

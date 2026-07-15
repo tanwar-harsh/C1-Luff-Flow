@@ -325,7 +325,13 @@ See [`testing/test-plan.md`](./testing/test-plan.md) and [`testing/integration-r
 | [`testing/`](./testing/) | Test plan and results |
 | [`review/`](./review/) | Code reviews |
 | [`reflection/`](./reflection/) | Project reflection |
-| [`prompts/`](./prompts/) | AI prompt history |
+| [`prompts/prompt-history.md`](./prompts/prompt-history.md) | AI prompt log (01–23) |
+| [`docs/ai-workflow/`](./docs/ai-workflow/) | Full prompt chronology + iteration cycles |
+| [`REQUIREMENTS.md`](./REQUIREMENTS.md) | Acceptance criteria (as implemented) |
+| [`ASSUMPTIONS.md`](./ASSUMPTIONS.md) | Edge-case assumptions |
+| [`docs/api-contract.md`](./docs/api-contract.md) | API contract (20 routes) |
+| [`MIGRATIONS.md`](./MIGRATIONS.md) | Prisma migrations & seed workflow |
+| [`REFLECTION.md`](./REFLECTION.md) | Project reflection (draft) |
 
 ## License
 

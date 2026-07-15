@@ -49,6 +49,14 @@ Chronological record of **every user prompt** in this project, sourced from chat
 | [P-032](#p-032--readme-demo-accounts) | 2026-07-14 | Docs | Demo account table |
 | [P-033](#p-033--create-prompt-log) | 2026-07-15 | Docs | This file (initial) |
 | [P-034](#p-034--expand-prompt-log) | 2026-07-15 | Docs | Full detailed log |
+| [P-035](#p-035--iteration-cycles-doc) | 2026-07-15 | Docs | `iteration-cycles.md` |
+| [P-036](#p-036--reflection-draft-qa) | 2026-07-15 | Docs | `REFLECTION.md` Q&A |
+| [P-037](#p-037--ticket-service-unit-tests) | 2026-07-15 | Testing | `TicketService.test.ts` |
+| [P-038](#p-038--status-actions-rtl-tests) | 2026-07-15 | Testing | `StatusActions.test.tsx` |
+| [P-039](#p-039--requirements--assumptions) | 2026-07-15 | Docs | `REQUIREMENTS.md`, `ASSUMPTIONS.md` |
+| [P-040](#p-040--api-contract) | 2026-07-15 | Docs | `docs/api-contract.md` |
+| [P-041](#p-041--migrations-doc) | 2026-07-15 | Docs | `MIGRATIONS.md` |
+| [P-042](#p-042--update-prompt-history) | 2026-07-15 | Docs | Prompts 16–23 + history sync |
 
 ---
 
@@ -732,6 +740,135 @@ Restart Cursor → confirm MCP connected.
 
 ---
 
+## Session 10 — 2026-07-15 · Documentation, testing & contracts
+
+### P-035 — Iteration cycles doc
+
+**Timestamp:** 2026-07-15, 4:51 PM  
+**Prompt file:** [`prompts/17-ai-workflow.md`](../../prompts/17-ai-workflow.md)
+
+**Prompt (verbatim)**
+
+> Based on the prompt log we just built, write a short "iteration-cycles.md" that picks 2-3 concrete cases where I pushed back on or corrected AI output. For each: what was suggested, what was wrong with it, how I changed the prompt or the code, and the final result.
+
+**AI suggestion:** Document Stitch MCP auth block, test DB `.env` fallback wiping production, README image scope creep.
+
+**Outcome:** ✅ **Accepted** — [`docs/ai-workflow/iteration-cycles.md`](./iteration-cycles.md)
+
+---
+
+### P-036 — Reflection draft (Q&A)
+
+**Timestamp:** 2026-07-15, 4:55–4:58 PM  
+**Prompt file:** [`prompts/18-reflection-draft.md`](../../prompts/18-reflection-draft.md)
+
+**Prompts**
+
+> Help me draft REFLECTION.md … Ask me questions one at a time instead of guessing.
+
+> (User answered: Prisma vs Knex; explicit state machine vs enum.)
+
+> Lets cancel out these questions, Skip the last prompt
+
+> Just FYI I have deleted reflections.md file, will iterate on it later.
+
+**AI suggestion:** Interview for 3 trade-offs; draft `REFLECTION.md` at project root.
+
+**Outcome:** ✏️ **Corrected** — Only 2 trade-offs captured; third skipped; user will iterate on reflection later.
+
+**Delivered:** [`REFLECTION.md`](../../REFLECTION.md)
+
+---
+
+### P-037 — TicketService unit tests
+
+**Timestamp:** 2026-07-15, 5:00 PM  
+**Prompt file:** [`prompts/19-ticket-service-tests.md`](../../prompts/19-ticket-service-tests.md)
+
+**Prompt (verbatim)**
+
+> Look at my service layer. Write unit tests for each service function using Vitest, mocking Prisma calls so these don't hit the real database. Start with the ticket service only, show me the tests, and wait for my confirmation before doing the next service.
+
+**AI suggestion:** Mock `ITicketRepository` + `UserService`; 15 tests in `TicketService.test.ts`.
+
+**Outcome:** ✅ **Accepted** — awaiting confirmation for remaining services.
+
+---
+
+### P-038 — StatusActions RTL tests
+
+**Timestamp:** 2026-07-15, 5:01 PM  
+**Prompt file:** [`prompts/20-status-actions-tests.md`](../../prompts/20-status-actions-tests.md)
+
+**Prompt (verbatim)**
+
+> Now write React Testing Library component tests for the ticket status form and its validation logic. Cover: valid submission, invalid state transition, and required-field errors. Show me one test file first before generating the rest.
+
+**AI suggestion:** Vitest + RTL setup; `StatusActions.test.tsx` with mocked `updateTicketStatus`.
+
+**Outcome:** ✅ **Accepted** — awaiting confirmation for more frontend tests.
+
+---
+
+### P-039 — Requirements & assumptions
+
+**Timestamp:** 2026-07-15, 5:03 PM  
+**Prompt file:** [`prompts/21-requirements-assumptions.md`](../../prompts/21-requirements-assumptions.md)
+
+**Prompt (verbatim)**
+
+> Read through my Prisma schema and API routes, then draft a REQUIREMENTS.md listing the core acceptance criteria as implemented, plus an ASSUMPTIONS.md covering edge cases … Flag anything you're inferring.
+
+**AI suggestion:** Root-level `REQUIREMENTS.md` + `ASSUMPTIONS.md` from schema/routes; tag inferred items.
+
+**Outcome:** ✅ **Accepted**
+
+---
+
+### P-040 — API contract
+
+**Timestamp:** 2026-07-15, 5:05 PM  
+**Prompt file:** [`prompts/22-api-contract.md`](../../prompts/22-api-contract.md)
+
+**Prompt (verbatim)**
+
+> Generate a minimal OpenAPI spec (or a markdown API contract table if that's faster) covering all my Express routes … Cross-check against my actual route files so nothing's invented.
+
+**AI suggestion:** `docs/api-contract.md` with 20 endpoints; update `docs/api.md` pointer.
+
+**Outcome:** ✅ **Accepted**
+
+---
+
+### P-041 — Migrations doc
+
+**Timestamp:** 2026-07-15, 5:06 PM  
+**Prompt file:** [`prompts/23-migrations.md`](../../prompts/23-migrations.md)
+
+**Prompt (verbatim)**
+
+> Add a MIGRATIONS.md documenting my Prisma migration workflow … Base it on my actual prisma/ folder and package.json scripts.
+
+**AI suggestion:** Root `MIGRATIONS.md` with scripts, migration history, seed vs demo seed, local reset.
+
+**Outcome:** ✅ **Accepted**
+
+---
+
+### P-042 — Update prompt history
+
+**Timestamp:** 2026-07-15, 5:10 PM
+
+**Prompt (verbatim)**
+
+> Include all the new prompts I used in prompt history update it wherever needed
+
+**AI suggestion:** Add `prompts/16`–`23`, sync `prompt-history.md` and `prompt-log.md`.
+
+**Outcome:** ✅ **Accepted** — this update.
+
+---
+
 ## Appendix A — Corrections & manual fixes summary
 
 | Issue | Prompt | AI mistake | User correction |
@@ -765,6 +902,14 @@ Restart Cursor → confirm MCP connected.
 | `13-landing-page.md` | P-019 | M9b |
 | `14-rbac.md` | P-022 | M10 |
 | `15-navbar-and-prod-fix.md` | P-024, P-025 | Deploy/UI |
+| `16-readme-updates.md` | P-028–P-034 | Docs |
+| `17-ai-workflow.md` | P-033, P-034, P-035 | Docs — AI workflow |
+| `18-reflection-draft.md` | P-036 | Docs — Reflection |
+| `19-ticket-service-tests.md` | P-037 | Testing |
+| `20-status-actions-tests.md` | P-038 | Testing — Frontend |
+| `21-requirements-assumptions.md` | P-039 | Docs |
+| `22-api-contract.md` | P-040 | Docs — API |
+| `23-migrations.md` | P-041 | Docs — Database |
 
 ---
 
